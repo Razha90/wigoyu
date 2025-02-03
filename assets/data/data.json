@@ -1,0 +1,961 @@
+[
+  {
+    "category": "Kuliner",
+    "name": "Komang Cafe",
+    "alamat": "Jalan Merak Jingga no.7, Kesawan, Medan Barat, Kota Medan 20236 (simpang Gudang, sebelah Kingdom Bistro)",
+    "video": "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/n7gtVs7yqtU?si=n9A7-8ciUCkCnL30\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>",
+    "detailt": "Komang Cafe adalah cafe terbaik di Kota Medan yang direferensikan oleh Wigoyu. Karena kafe ini hadir dengan konsep Minimalis Industrial yang ada di pusat Kota Medan, tepatnya berada di Jl. Merak Jingga no.7 yang biasa dikenal dengan Simpang Gudang. Café ini menyediakan ruangan indoor (full ac dan non smoking), semi outdoor dan outdoor. Lokasinya yang berada di pinggir jalan tidak membuat kita bertambah stress karena keseharian tetapi kebalikannya memberikan suasana yang berbeda ditengah hiruk pikuknya kota Medan. Sebagai pilihan menu Komang yang secara konsep arahnya juga sebagai tempat ngopi menyediakan beragam makanan dan minuman, pilihan kopi premium, makanan dengan rasa yang sesuai selera millenial, snack, smoothies dan lain lain. Dengan susana yang lebih bersahabat, penempatan meja kursi dan layout dengan level level membuat Komang lebih lapang tapi tetap terasa suasana kedekatan satu dengan yang lainnya. Reservasi sekarang juga di nomor 0811 891 1616 For more info cek IG @wigoyu.medan & @komang.cafe (klik icon Instagram)",
+    "image": [
+      "https://wigoyu.com/img/photo/170110138943.jpg"
+    ],
+    "facility": [
+      "Indoor Non-Smoking Area",
+      "Outdoor Area",
+      "Dine In",
+      "Take Away",
+      "Online Order",
+      "Musholla",
+      "Wi-Fi"
+    ],
+    "short_detail": "Café dengan konsep Minimalis Industrial yang ada di pusat Kota Medan",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Minggu",
+      "start_time": "12:00:00",
+      "end_time": "23:00:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.9616138506726!2d98.67444491105903!3d3.596272796362749!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131c15bbdeaf3%3A0xe4cd77a6393e831d!2sKomang%20Cafe!5e0!3m2!1sid!2sid!4v1701084030712!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://instagram.com/komang.cafe"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://facebook.com/Komang%20Cafe"
+      },
+      {
+        "name": "Telephone",
+        "link": "08118911616"
+      }
+    ],
+    "review": [
+      {
+        "name": "Pritty",
+        "rating": 5,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 1,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Rizky",
+        "rating": 4,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 2,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 4014,
+        "name": "Special Promo",
+        "description": "Voucher diskon 10% untuk semua menu",
+        "discount": 10,
+        "price": 10000,
+        "product": [
+          5445,
+          5446,
+          5447
+        ]
+      },
+      {
+        "id": 4015,
+        "name": "Voucher Kopi Hitam",
+        "description": "Diskon 15% untuk Kopi Hitam",
+        "discount": 15,
+        "price": 8000,
+        "product": [
+          5445
+        ]
+      },
+      {
+        "id": 4016,
+        "name": "Voucher Kopi Susu",
+        "description": "Diskon 20% untuk Kopi Susu",
+        "discount": 20,
+        "price": 7000,
+        "product": [
+          5446
+        ]
+      },
+      {
+        "id": 4017,
+        "name": "Paket Hemat",
+        "description": "Diskon 25% untuk pembelian 2 kopi",
+        "discount": 25,
+        "price": 9000,
+        "product": [
+          5445,
+          5446
+        ]
+      },
+      {
+        "id": 4018,
+        "name": "Voucher Spesial",
+        "description": "Diskon 30% untuk semua kopi",
+        "discount": 30,
+        "price": 12000,
+        "product": [
+          5445,
+          5446,
+          5447
+        ]
+      },
+      {
+        "id": 4019,
+        "name": "Promo Kopi Coklat",
+        "description": "Diskon 40% untuk Kopi Coklat",
+        "discount": 40,
+        "price": 11000,
+        "product": [
+          5447
+        ]
+      },
+      {
+        "id": 4020,
+        "name": "Diskon Setengah Harga",
+        "description": "Diskon 50% untuk semua menu",
+        "discount": 50,
+        "price": 15000,
+        "product": [
+          5445,
+          5446,
+          5447
+        ]
+      },
+      {
+        "id": 4021,
+        "name": "Promo Member",
+        "description": "Diskon 60% khusus pelanggan setia",
+        "discount": 60,
+        "price": 18000,
+        "product": [
+          5445,
+          5446
+        ]
+      },
+      {
+        "id": 4022,
+        "name": "Voucher Premium",
+        "description": "Diskon 75% untuk semua kopi",
+        "discount": 75,
+        "price": 20000,
+        "product": [
+          5445,
+          5446,
+          5447
+        ]
+      },
+      {
+        "id": 4023,
+        "name": "Gratis Kopi",
+        "description": "Diskon 100% untuk satu kopi pilihan",
+        "discount": 100,
+        "price": 25000,
+        "product": [
+          5445,
+          5446,
+          5447
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 5445,
+        "name": "Kopi Hitam",
+        "price": 15000
+      },
+      {
+        "id": 5446,
+        "name": "Kopi Susu",
+        "price": 20000
+      },
+      {
+        "id": 5447,
+        "name": "Kopi Coklat",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "category": "Pendidikan",
+    "name": "Rainbow School of Joy",
+    "video": "",
+    "alamat": "Jl. Sampul No.34, Sei Putih Bar., Kec. Medan Petisah, Kota Medan, Sumatera Utara 20118",
+    "detailt": "Rainbow School of Joy merupakan sekolah terbaik di Kota Medan yang direferensikan oleh Wigoyu. Karena sekolah satu ini berbasis inklusi yang mengutamakan keberagaman dan kebahagiaan sebagai nilai inti dalam pembelajaran. Sekolah ini dirancang untuk memberikan pengalaman belajar yang penuh kasih sayang, pengertian, dan toleransi, di mana setiap siswa diterima tanpa memandang perbedaan latar belakang, kemampuan, atau kebutuhan khusus. Rainbow School of Joy menawarkan program pembelajaran yang fleksibel dan individual, yang dirancang khusus sesuai dengan kemampuan dan kebutuhan siswa. Metode pengajaran bersifat partisipatif dan mendorong eksplorasi serta kreativitas. Rainbow School of Joy dirancang untuk menciptakan lingkungan yang mendukung kebutuhan belajar dan perkembangan anak-anak. Berikut adalah fasilitas lengkap yang disediakan seperti Ruang Kelas Inklusif, Mini Zoo, Perpustakaan dengan koleksi buku yang beragam, baik literatur anak-anak maupun buku pendidikan yang mendukung kurikulum, Laboratorium Sains dan Teknologi dan masih banyak lagi. Silakan hubungi nomor 0811 6091 558. For more info cek IG @wigoyu.medan & @rainbowschoolofjoy (klik icon Instagram)",
+    "image": [
+      "https://wigoyu.com/img/photo/170256573613.jpg",
+      "https://wigoyu.com/img/photo/170256576010.jpg"
+    ],
+    "facility": [
+      "Lapangan Sepak Bola",
+      "Lapangan Basket",
+      "High Speed Internet",
+      "Mini Zoo",
+      "Cafetaria",
+      "Swimming Pool",
+      "Parkir Luas"
+    ],
+    "short_detail": "High Quality Education",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Jumat",
+      "start_time": "07:00:00",
+      "end_time": "15:00:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.952034895973!2d98.64715757585148!3d3.5984651502245355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312e22dcba0275%3A0xdc8c2a223ce240f3!2sRainbow%20School%20of%20Joy!5e0!3m2!1sid!2sid!4v1702040843632!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://www.instagram.com/rainbowschoolofjoy"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/Rainbow%20School%20of%20Joy"
+      },
+      {
+        "name": "Telephone",
+        "link": "08116091558"
+      }
+    ],
+    "review": [
+      {
+        "name": "Pritty",
+        "rating": 5,
+        "comment": "Tempat Seru dan menyenangkan, anak-anak jadi betah belajar disini. Pendidikannya juga bagus, recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 1,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Rizky",
+        "rating": 4,
+        "comment": "Tempatnya asik dan menyenangkan, anak-anak jadi betah belajar disini. Pendidikannya juga bagus, recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 2,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 101,
+        "name": "Diskon Kursus Online",
+        "description": "Diskon 20% untuk semua kursus online",
+        "discount": 20,
+        "price": 50000,
+        "product": [
+          201,
+          202,
+          203
+        ]
+      },
+      {
+        "id": 102,
+        "name": "Promo Buku Pendidikan",
+        "description": "Diskon 10% untuk pembelian buku pelajaran",
+        "discount": 10,
+        "price": 30000,
+        "product": [
+          204,
+          205
+        ]
+      },
+      {
+        "id": 103,
+        "name": "Voucher Bimbingan Belajar",
+        "description": "Diskon 15% untuk paket bimbingan belajar",
+        "discount": 15,
+        "price": 70000,
+        "product": [
+          206,
+          207,
+          208
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 201,
+        "name": "Kursus Matematika Online",
+        "price": 150000
+      },
+      {
+        "id": 202,
+        "name": "Kursus Bahasa Inggris Online",
+        "price": 180000
+      },
+      {
+        "id": 203,
+        "name": "Kursus Pemrograman Dasar",
+        "price": 200000
+      },
+      {
+        "id": 204,
+        "name": "Buku Matematika SMA",
+        "price": 50000
+      },
+      {
+        "id": 205,
+        "name": "Buku Fisika SMP",
+        "price": 45000
+      },
+      {
+        "id": 206,
+        "name": "Bimbingan Belajar Intensif",
+        "price": 250000
+      },
+      {
+        "id": 207,
+        "name": "Bimbingan Belajar UTBK",
+        "price": 300000
+      },
+      {
+        "id": 208,
+        "name": "Bimbingan Belajar SD",
+        "price": 200000
+      },
+      {
+        "id": 209,
+        "name": "Modul Belajar Mandiri",
+        "price": 75000
+      },
+      {
+        "id": 210,
+        "name": "Paket Video Pembelajaran",
+        "price": 120000
+      },
+      {
+        "id": 211,
+        "name": "Langganan Aplikasi Pendidikan",
+        "price": 100000
+      }
+    ]
+  },
+  {
+    "category": "Kuliner",
+    "name": "Chok Dee Thai",
+    "alamat": "JHMWG+8HJ, Kesawan, Kec. Medan Bar., Kota Medan, Sumatera Utara",
+    "detailt": "Chok Dee Thai: Cita Rasa Thailand yang Autentik untuk Memanjakan Lidah Anda Ingin mencicipi makanan Thailand yang lezat dan autentik? Chok Dee Thai adalah jawabannya! Mereka menawarkan berbagai macam hidangan tradisional Thailand yang dibuat dengan bahan-bahan segar dan kaya akan rasa. penggunaan bahan-bahan segar dan berkualitas tinggi untuk menghadirkan cita rasa Thailand. Cocok untuk Makan siang atau malam yang nikmat dan Bersantap bersama teman dan keluarga. Datanglah ke Chok Dee Thai dan mulailah petualangan kuliner Anda ke Thailand!",
+    "video": "",
+    "image": [
+      "https://wigoyu.com/img/photo/171051516349.jpg",
+      "https://wigoyu.com/img/photo/171051516310.jpg",
+      "https://wigoyu.com/img/photo/171051516315.jpg",
+      "https://wigoyu.com/img/photo/171051516320.jpg",
+      "https://wigoyu.com/img/photo/171051516319.jpg"
+    ],
+    "facility": [
+      "VIP Room",
+      "Outdoor",
+      "Indoor",
+      "Wi Fi",
+      "Parking Area"
+    ],
+    "short_detail": "Resto Thailand & All You Can Eat",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Minggu",
+      "start_time": "11:00:00",
+      "end_time": "22:00:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.9634805756186!2d98.6763809!3d3.5958454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131f044123e47%3A0xb67af75882df7432!2sChok%20Dee%20Thai!5e0!3m2!1sid!2sid!4v1724700255766!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://instagram.com/chokdeethaimedan"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://facebook.com/Chok%20Dee%20Thai"
+      },
+      {
+        "name": "Telephone",
+        "link": "088275945552"
+      }
+    ],
+    "review": [
+      {
+        "name": "Wulan",
+        "rating": 5,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 4,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Ujang",
+        "rating": 4,
+        "date": "2021-10-12",
+        "comment": "Makanan enak mengugah selera dan harga terjangkau. Pelayanan ramah dan tempatnya nyaman. Recommended deh!",
+        "userdId": 7,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 1001,
+        "name": "Diskon Spesial",
+        "description": "Diskon 10% untuk semua minuman",
+        "discount": 10,
+        "price": 10000,
+        "product": [
+          2001,
+          2002,
+          2003
+        ]
+      },
+      {
+        "id": 1003,
+        "name": "Promo Kopi Susu",
+        "description": "Diskon 20% khusus menu kopi susu",
+        "discount": 20,
+        "price": 12000,
+        "product": [
+          2004
+        ]
+      },
+      {
+        "id": 1005,
+        "name": "Voucher Happy Hour",
+        "description": "Diskon 15% untuk pembelian antara jam 14.00 - 17.00",
+        "discount": 15,
+        "price": 8000,
+        "product": [
+          2005,
+          2006
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 2001,
+        "name": "Espresso",
+        "price": 15000
+      },
+      {
+        "id": 2002,
+        "name": "Americano",
+        "price": 18000
+      },
+      {
+        "id": 2003,
+        "name": "Latte",
+        "price": 22000
+      },
+      {
+        "id": 2004,
+        "name": "Kopi Susu Gula Aren",
+        "price": 25000
+      },
+      {
+        "id": 2005,
+        "name": "Matcha Latte",
+        "price": 28000
+      },
+      {
+        "id": 2006,
+        "name": "Caramel Macchiato",
+        "price": 30000
+      },
+      {
+        "id": 2007,
+        "name": "Mocha",
+        "price": 26000
+      },
+      {
+        "id": 2008,
+        "name": "Cappuccino",
+        "price": 24000
+      },
+      {
+        "id": 2009,
+        "name": "Affogato",
+        "price": 32000
+      },
+      {
+        "id": 2010,
+        "name": "Flat White",
+        "price": 27000
+      }
+    ]
+  },
+  {
+    "category": "Kuliner",
+    "name": "Le Chateau",
+    "alamat": "Jl. Perintis Kemerdekaan, Kesawan, Kec. Medan Bar., Kota Medan, Sumatera Utara 20236",
+    "detailt": "Le Chateau merupakan sebuah restoran fine dining terbaik di Kota Medan yang direferensikan oleh Wigoyu. Karena restoran satu ini menawarkan pengalaman kuliner kelas atas dengan nuansa klasik Prancis yang elegan. Restoran ini telah berhasil memikat hati para pecinta kuliner di Medan dan sekitarnya dengan cita rasa otentik, suasana romantis, dan pelayanan yang prima. Restoran Le Chateau menghadirkan tempat makan yang nyaman dan elegant, menu makanan eksklusif, customer service bintang lima serta area parkir yang luas. For more information, silakan cek IG @wigoyu.medan & @lechateauindonesia (klik icon Instagram)",
+    "image": [
+      "https://wigoyu.com/img/photo/171327838848.jpg",
+      "https://wigoyu.com/img/photo/171327838830.jpg",
+      "https://wigoyu.com/img/photo/171327838813.jpg",
+      "https://wigoyu.com/img/photo/17132783889.jpg"
+    ],
+    "video": "",
+    "facility": [
+      "Live Music Every Saturday",
+      "Event Reservation",
+      "Parkir Luas"
+    ],
+    "short_detail": "Fine Dining",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Minggu",
+      "start_time": "16:00:00",
+      "end_time": "23:00:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.963244514405!2d98.67393337598317!3d3.595899450241901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3031315ba670f3cb%3A0x23a3b29f5ce23655!2sLe%20Chateau!5e0!3m2!1sid!2sid!4v1724699500372!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://www.instagram.com/lechateauindonesia"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/Le%20Chateau%20Indonesia"
+      },
+      {
+        "name": "Telephone",
+        "link": "082275945552"
+      }
+    ],
+    "review": [
+      {
+        "name": "Wulan",
+        "rating": 5,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 4,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Ujang",
+        "rating": 4,
+        "comment": "Makanan enak mengugah selera dan harga terjangkau. Pelayanan ramah dan tempatnya nyaman. Recommended deh!",
+        "date": "2021-10-12",
+        "userdId": 7,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 1001,
+        "name": "Diskon Spesial",
+        "description": "Diskon 10% untuk semua minuman",
+        "discount": 10,
+        "price": 10000,
+        "product": [
+          2001,
+          2002,
+          2003,
+          2004
+        ]
+      },
+      {
+        "id": 1003,
+        "name": "Promo Kopi Susu",
+        "description": "Diskon 20% khusus menu kopi susu",
+        "discount": 20,
+        "price": 12000,
+        "product": [
+          2004,
+          2007
+        ]
+      },
+      {
+        "id": 1005,
+        "name": "Voucher Happy Hour",
+        "description": "Diskon 15% untuk pembelian antara jam 14.00 - 17.00",
+        "discount": 15,
+        "price": 8000,
+        "product": [
+          2005,
+          2006,
+          2008
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 2001,
+        "name": "Espresso",
+        "price": 15000
+      },
+      {
+        "id": 2002,
+        "name": "Americano",
+        "price": 18000
+      },
+      {
+        "id": 2003,
+        "name": "Latte",
+        "price": 22000
+      },
+      {
+        "id": 2004,
+        "name": "Kopi Susu Gula Aren",
+        "price": 25000
+      },
+      {
+        "id": 2005,
+        "name": "Matcha Latte",
+        "price": 28000
+      },
+      {
+        "id": 2006,
+        "name": "Caramel Macchiato",
+        "price": 30000
+      },
+      {
+        "id": 2007,
+        "name": "Mocha",
+        "price": 26000
+      },
+      {
+        "id": 2008,
+        "name": "Cappuccino",
+        "price": 24000
+      },
+      {
+        "id": 2009,
+        "name": "Affogato",
+        "price": 32000
+      },
+      {
+        "id": 2010,
+        "name": "Flat White",
+        "price": 27000
+      },
+      {
+        "id": 2011,
+        "name": "Iced Coffee",
+        "price": 20000
+      },
+      {
+        "id": 2012,
+        "name": "Vanilla Latte",
+        "price": 23000
+      },
+      {
+        "id": 2013,
+        "name": "Hazelnut Mocha",
+        "price": 29000
+      }
+    ]
+  },
+  {
+    "category": "Kuliner",
+    "name": "Kopi Kuni Lite",
+    "alamat": "Jl. Hasanuddin B No.10, Petisah Hulu, Kec. Medan Baru, Kota Medan, Sumatera Utara",
+    "detailt": "Coffeeshop Ternyaman di Medan yang direferensikan oleh Wigoyu Sobat Wigoyu pasti tidak asing dengan coffeeshop yang satu ini! Atau ada yang belum tau, Yumin rekomendasiin sih buat datang kesini. Tempatnya comfy, santai dan homey buat kalian betah nongkrong lama lama disini! Disini juga tersedia beberapa ruangan yang buat kamu makin nyaman dan juga tersedia buat kalian yang mau buat event: ✅ Indoor ✅ Indoor Ac ✅ Outdoor ✅ Wifi ✅ Toilet Yuk buat kamu yang bingung mau nongkrong dimana, langsung gaskan kesini! For more info cek IG @wigoyu.medan & @kopikuni_lite (klik icon Instagram)",
+    "image": [
+      "https://wigoyu.com/img/banner/202408231133KOPI%20KUNI%20LITE.webp"
+    ],
+    "video": "",
+    "facility": [
+      "Indoor",
+      "Indoor Ac",
+      "Outdoor",
+      "Wifi",
+      "Toilet"
+    ],
+    "short_detail": "Coffee Shop",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Minggu",
+      "start_time": "11:00:00",
+      "end_time": "22:00:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.0191641303677!2d98.66254037598323!3d3.5830729503299468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131006989a9d7%3A0x62e1c690c18cdabc!2sKopi%20Kuni%20Lite!5e0!3m2!1sid!2sid!4v1724699635080!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://www.instagram.com/kopikuni_lite"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/Coming%20Soon"
+      },
+      {
+        "name": "Telephone",
+        "link": "085361450942"
+      }
+    ],
+    "review": [
+      {
+        "name": "Wulan",
+        "rating": 5,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 4,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Ujang",
+        "rating": 4,
+        "comment": "Makanan enak mengugah selera dan harga terjangkau. Pelayanan ramah dan tempatnya nyaman. Recommended deh!",
+        "date": "2021-10-12",
+        "userdId": 7,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 301,
+        "name": "Diskon Makan Siang",
+        "description": "Diskon 20% untuk menu makan siang",
+        "discount": 20,
+        "price": 25000,
+        "product": [
+          401,
+          402,
+          403
+        ]
+      },
+      {
+        "id": 302,
+        "name": "Promo Paket Keluarga",
+        "description": "Diskon 15% untuk paket keluarga",
+        "discount": 15,
+        "price": 50000,
+        "product": [
+          404,
+          405
+        ]
+      },
+      {
+        "id": 303,
+        "name": "Voucher Minuman Gratis",
+        "description": "Beli 2 makanan utama, dapatkan 1 minuman gratis",
+        "discount": 100,
+        "price": 15000,
+        "product": [
+          406,
+          407,
+          408
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 401,
+        "name": "Nasi Goreng Spesial",
+        "price": 35000
+      },
+      {
+        "id": 402,
+        "name": "Ayam Geprek Sambal Matah",
+        "price": 40000
+      },
+      {
+        "id": 403,
+        "name": "Soto Ayam Lamongan",
+        "price": 30000
+      },
+      {
+        "id": 404,
+        "name": "Paket Ayam Bakar Komplit",
+        "price": 80000
+      },
+      {
+        "id": 405,
+        "name": "Paket Sate Kambing",
+        "price": 90000
+      },
+      {
+        "id": 406,
+        "name": "Es Teh Manis",
+        "price": 10000
+      },
+      {
+        "id": 407,
+        "name": "Es Jeruk Segar",
+        "price": 12000
+      },
+      {
+        "id": 408,
+        "name": "Kopi Susu Gula Aren",
+        "price": 20000
+      },
+      {
+        "id": 409,
+        "name": "Rendang Sapi",
+        "price": 50000
+      },
+      {
+        "id": 410,
+        "name": "Bakso Urat Spesial",
+        "price": 35000
+      },
+      {
+        "id": 411,
+        "name": "Mie Ayam Pangsit",
+        "price": 25000
+      }
+    ]
+  },
+  {
+    "category": "Salon Wanita",
+    "name": "Head To Toe",
+    "alamat": "Komplek Cemara Asri, Jl. Berjaya No.88RR, Medan Estate, Kec. Percut Sei Tuan, Medan, Sumatera Utara 20371",
+    "detailt": "Head to Toe adalah salon kecantikan terbaik di Kota Medan yang direferensikan oleh Wigoyu. Karena salon ini menawarkan berbagai layanan perawatan tubuh dan rambut dengan konsep menyeluruh dari ujung kepala hingga ujung kaki. Salon kecantikan Head to Toe menyediakan berbagai fasilitas dan layanan premium yang mencakup perawatan kecantikan menyeluruh, seperti hair treatment, facial treatment, dan masih banyak perawatan lainnya. Reservasi sekarang juga! Cek info lengkapnya di IG @wigoyu.medan & @head2toe_berjaya (klik icon Instagram)",
+    "image": [
+      "https://wigoyu.com/img/photo/172848461340.jpg",
+      "https://wigoyu.com/img/photo/17284844973.jpg",
+      "https://wigoyu.com/img/photo/172848451135.jpg",
+      "https://wigoyu.com/img/photo/172848458926.jpg"
+    ],
+    "video": "",
+    "facility": [
+      "Salon Service",
+      "Beauty Service",
+      "Free Parking",
+      "Free Wifi"
+    ],
+    "short_detail": "Salon Kecantikan yang Memberikan Fasilitas dari Kepala Sampai Kaki",
+    "open": {
+      "start_day": "Senin",
+      "end_day": "Minggu",
+      "start_time": "08:00:00",
+      "end_time": "18:30:00"
+    },
+    "map": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.8001871974125!2d98.70504907598314!3d3.633042349985477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303133cc4c2532a1%3A0xb62d900cf7c470cd!2sHead%20to%20Toe%20Cemara%20Asri!5e0!3m2!1sid!2sid!4v1724699887934!5m2!1sid!2sid\" width=\"100%\" height=\"100%\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>",
+    "medsos": [
+      {
+        "name": "Instagram",
+        "link": "https://www.instagram.com/head2toe_berjaya"
+      },
+      {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/Head%20To%20Toe%20Berjaya"
+      },
+      {
+        "name": "Telephone",
+        "link": "085261350880"
+      }
+    ],
+    "review": [
+      {
+        "name": "Wulan",
+        "rating": 5,
+        "comment": "Tempatnya nyaman, makanannya enak, pelayanannya ramah. Harganya juga terjangkau. Pokoknya recommended deh!",
+        "date": "2021-10-10",
+        "userdId": 4,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      },
+      {
+        "name": "Ujang",
+        "rating": 4,
+        "comment": "Makanan enak mengugah selera dan harga terjangkau. Pelayanan ramah dan tempatnya nyaman. Recommended deh!",
+        "date": "2021-10-12",
+        "userdId": 7,
+        "image": "https://wigoyu.com/img/comment/comment_1.png"
+      }
+    ],
+    "voucher": [
+      {
+        "id": 501,
+        "name": "Diskon Makan Malam",
+        "description": "Diskon 25% untuk menu makan malam",
+        "discount": 25,
+        "price": 30000,
+        "product": [
+          601,
+          602,
+          603
+        ]
+      },
+      {
+        "id": 502,
+        "name": "Paket Hemat Berdua",
+        "description": "Diskon 20% untuk pembelian dua menu utama",
+        "discount": 20,
+        "price": 55000,
+        "product": [
+          604,
+          605
+        ]
+      },
+      {
+        "id": 503,
+        "name": "Gratis Dessert",
+        "description": "Beli 3 makanan utama, dapatkan 1 dessert gratis",
+        "discount": 100,
+        "price": 18000,
+        "product": [
+          606,
+          607,
+          608
+        ]
+      }
+    ],
+    "product": [
+      {
+        "id": 601,
+        "name": "Nasi Goreng Seafood",
+        "price": 40000
+      },
+      {
+        "id": 602,
+        "name": "Iga Bakar Madu",
+        "price": 75000
+      },
+      {
+        "id": 603,
+        "name": "Gado-Gado Spesial",
+        "price": 35000
+      },
+      {
+        "id": 604,
+        "name": "Paket Bebek Goreng",
+        "price": 90000
+      },
+      {
+        "id": 605,
+        "name": "Paket Sate Ayam",
+        "price": 85000
+      },
+      {
+        "id": 606,
+        "name": "Es Cendol Dawet",
+        "price": 15000
+      },
+      {
+        "id": 607,
+        "name": "Pisang Goreng Keju",
+        "price": 18000
+      },
+      {
+        "id": 608,
+        "name": "Es Campur Segar",
+        "price": 20000
+      },
+      {
+        "id": 609,
+        "name": "Nasi Padang Komplit",
+        "price": 55000
+      },
+      {
+        "id": 610,
+        "name": "Mie Goreng Jawa",
+        "price": 30000
+      },
+      {
+        "id": 611,
+        "name": "Sop Buntut",
+        "price": 75000
+      }
+    ]
+  }
+]

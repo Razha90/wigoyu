@@ -1,0 +1,78 @@
+[
+  {
+    "title": "Kuliner",
+    "image": "assets/icons/11.png"
+  },
+  {
+    "title": "Penginapan",
+    "image": "assets/icons/5.png"
+  },
+  {
+    "title": "Traveling",
+    "image": "assets/icons/2.png"
+  },
+  {
+    "title": "Outlet",
+    "image": "assets/icons/3.png"
+  },
+  {
+    "title": "Oleh-Oleh",
+    "image": "assets/icons/9.png"
+  },
+  {
+    "title": "Salon Wanita",
+    "image": "assets/icons/4.png"
+  },
+  {
+    "title": "Fashion",
+    "image": "assets/icons/18.png"
+  },
+  {
+    "title": "Kecantikan",
+    "image": "assets/icons/14.png"
+  },
+  {
+    "title": "Pangkas",
+    "image": "assets/icons/7.png"
+  },
+  {
+    "title": "Baby",
+    "image": "assets/icons/15.png"
+  },
+  {
+    "title": "Pendidikan",
+    "image": "assets/icons/6.png"
+  },
+  {
+    "title": "Grosir",
+    "image": "assets/icons/17.png"
+  },
+  {
+    "title": "Hiburan",
+    "image": "assets/icons/16.png"
+  },
+  {
+    "title": "Elektronik",
+    "image": "assets/icons/19.png"
+  },
+  {
+    "title": "Kesehatan",
+    "image": "assets/icons/13.png"
+  },
+  {
+    "title": "Olahraga",
+    "image": "assets/icons/10.png"
+  },
+  {
+    "title": "Otomotif",
+    "image": "assets/icons/8.png"
+  },
+  {
+    "title": "Komunitas",
+    "image": "assets/icons/12.png"
+  },
+  {
+    "title": "Dan lain-lain",
+    "image": "assets/icons/1.png"
+  }
+]
