@@ -129,7 +129,7 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                       if (!user.isLoggedIn) {
                         return Center(
                           child: Text(
-                            "Tiada data",
+                            "Voucher Tidak Ditemukan",
                             style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -137,22 +137,22 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                           ),
                         );
                       }
-                      if (user.historyVoucher == null ||
-                          user.historyVoucher!.isEmpty) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Voucher Kosong",
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        );
-                      }
                       if (index == 0) {
+                        if (user.voucher == null || user.voucher!.isEmpty) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Voucher Kosong",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                         return SingleChildScrollView(
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),
@@ -440,6 +440,22 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                           ),
                         );
                       } else {
+                        if (user.historyVoucher == null ||
+                            user.historyVoucher!.isEmpty) {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Voucher Kosong",
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          );
+                        }
                         return SingleChildScrollView(
                           child: Padding(
                             padding: const EdgeInsets.all(20.0),

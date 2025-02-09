@@ -191,7 +191,7 @@ class User extends ChangeNotifier {
     List<Users> users = await UserPreferences.getAllUsers();
     Users? user = users.firstWhere((user) => user.id == userId);
     List<int>? voucherIds = user.vouchers;
-
+    _voucher = List.from(voucherIds!);
     return voucherIds;
   }
 
@@ -199,7 +199,7 @@ class User extends ChangeNotifier {
     List<Users> users = await UserPreferences.getAllUsers();
     Users? user = users.firstWhere((user) => user.id == userId);
     List<int>? voucherIds = user.historyVoucher;
-
+    _historyVoucher = List.from(voucherIds!);
     return voucherIds;
   }
 
