@@ -61,6 +61,8 @@ dependencies:
   simple_numpad: ^1.0.5
   pretty_qr_code: ^3.3.0
   path_provider: ^2.1.5
+  share_plus: ^10.1.4
+  flutter_media_store: ^1.3.1
 
 dev_dependencies:
   flutter_test:

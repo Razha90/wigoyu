@@ -19,6 +19,7 @@ class User extends ChangeNotifier {
   String? _pin;
   List<UserNotification>? _notification;
   List<int>? _voucher;
+  List<int>? _historyVoucher;
 
   String? get name => _name;
   String? get userId => _userId;
@@ -29,6 +30,7 @@ class User extends ChangeNotifier {
   String? get pin => _pin;
   List<UserNotification>? get notification => _notification;
   List<int>? get voucher => _voucher;
+  List<int>? get historyVoucher => _historyVoucher;
 
   Future<void> login(
       String name, String userId, List<String> history, String email) async {
@@ -41,9 +43,10 @@ class User extends ChangeNotifier {
     String? myPin = await _addPin(userId);
     List<UserNotification>? myNotification = await _addNotidication(userId);
     List<int>? myVoucher = await _addVoucher(userId);
+    List<int>? myHistoryVoucher = await _addHistoryVoucher(userId);
 
     saveUserToLocal(name, userId, mySaldo, history, myPhoto, email, myPin,
-        myNotification, myVoucher);
+        myNotification, myVoucher, myHistoryVoucher);
     notifyListeners();
   }
 
@@ -58,6 +61,7 @@ class User extends ChangeNotifier {
     _pin = null;
     _notification = null;
     _voucher = null;
+    _historyVoucher = null;
     notifyListeners();
   }
 
@@ -77,7 +81,8 @@ class User extends ChangeNotifier {
       String email,
       String? pin,
       List<UserNotification>? notifications,
-      List<int>? voucher) async {
+      List<int>? voucher,
+      List<int>? historyVoucher) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('name', name);
     await prefs.setString('userId', userId);
@@ -97,6 +102,11 @@ class User extends ChangeNotifier {
       List<String> voucherStrings = voucher.map((e) => e.toString()).toList();
       await prefs.setStringList('voucher', voucherStrings);
     }
+    if (historyVoucher != null) {
+      List<String> historyVoucherStrings =
+          historyVoucher.map((e) => e.toString()).toList();
+      await prefs.setStringList('historyVoucher', historyVoucherStrings);
+    }
   }
 
   // Menghapus data pengguna dari SharedPreferences
@@ -111,6 +121,7 @@ class User extends ChangeNotifier {
     await prefs.remove('pin');
     await prefs.remove('notifications');
     await prefs.remove('voucher');
+    await prefs.remove('historyVoucher');
   }
 
   // Memuat data pengguna dari SharedPreferences
@@ -143,8 +154,13 @@ class User extends ChangeNotifier {
         _voucher = jsonVouchers.map((e) => int.parse(e)).toList();
       }
 
+      List<String>? jsonHistoryVouchers = prefs.getStringList('historyVoucher');
+      if (jsonHistoryVouchers != null) {
+        _historyVoucher = jsonHistoryVouchers.map((e) => int.parse(e)).toList();
+      }
+
       print(
-          "Loaded user: $_name, $_userId, $_saldo, $_history, $_photo, $_email, $_pin, $_notification, $_voucher");
+          "Loaded user: $_name, $_userId, $_saldo, $_history, $_photo, $_email, $_pin, $_notification, $_voucher, $_historyVoucher");
       notifyListeners();
     } catch (e) {
       print("Loading user: $e");
@@ -176,6 +192,14 @@ class User extends ChangeNotifier {
     List<Users> users = await UserPreferences.getAllUsers();
     Users? user = users.firstWhere((user) => user.id == userId);
     List<int>? voucherIds = user.vouchers;
+
+    return voucherIds;
+  }
+
+  Future<List<int>?> _addHistoryVoucher(String userId) async {
+    List<Users> users = await UserPreferences.getAllUsers();
+    Users? user = users.firstWhere((user) => user.id == userId);
+    List<int>? voucherIds = user.historyVoucher;
 
     return voucherIds;
   }
@@ -293,38 +317,50 @@ class User extends ChangeNotifier {
     }
   }
 
-  // Future<void> updateVoucher(String userId, UserVoucher newVoucher) async {
-  //   try {
-  //     List<Users> users = await UserPreferences.getAllUsers();
-  //     Users? user = users.firstWhere(
-  //       (user) => user.id == userId,
-  //       orElse: () => throw Exception("User with ID $userId not found"),
-  //     );
-  //     user.vouchers ??= [];
-  //     int index =
-  //         user.vouchers!.indexWhere((voucher) => voucher.id == newVoucher.id);
+  Future<void> deleteVoucher(String userId, int voucherToDelete) async {
+    try {
+      List<Users> users = await UserPreferences.getAllUsers();
+      Users? user = users.firstWhere(
+        (user) => user.id == userId,
+        orElse: () => throw Exception("User with ID $userId not found"),
+      );
+      if (!user.vouchers!.contains(voucherToDelete)) {
+        return;
+      }
+      user.vouchers!.remove(voucherToDelete);
+      await UserPreferences.saveAllUsers(users);
+      _voucher!.remove(voucherToDelete);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setStringList(
+          'voucher', _voucher!.map((e) => e.toString()).toList());
+      notifyListeners();
+      print("Voucher item deleted successfully for user ID: $userId");
+    } catch (e) {
+      print("Error deleting voucher: $e");
+      rethrow;
+    }
+  }
 
-  //     if (index != -1) {
-  //       user.vouchers![index] = newVoucher;
-  //     } else {
-  //       user.vouchers!.add(newVoucher);
-  //     }
+  Future<void> updateHistoryVoucher(String userId, int newVoucher) async {
+    try {
+      List<Users> users = await UserPreferences.getAllUsers();
+      Users? user = users.firstWhere(
+        (user) => user.id == userId,
+        orElse: () => throw Exception("User with ID $userId not found"),
+      );
 
-  //     await UserPreferences.saveAllUsers(users);
-
-  //     final prefs = await SharedPreferences.getInstance();
-  //     List<String> jsonVouchers =
-  //         user.vouchers!.map((e) => jsonEncode(e.toJson())).toList();
-  //     await prefs.setStringList('voucher', jsonVouchers);
-
-  //     _voucher ??= [];
-  //     _voucher!.add(newVoucher);
-
-  //     notifyListeners();
-  //   } catch (e) {
-  //     print("Error updating voucher: $e");
-  // //   }
-  // }
+      user.historyVoucher ??= [];
+      user.historyVoucher!.add(newVoucher);
+      await UserPreferences.saveAllUsers(users);
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setStringList('historyVoucher',
+          user.historyVoucher!.map((e) => e.toString()).toList());
+      _historyVoucher = List.from(user.historyVoucher!);
+      notifyListeners();
+    } catch (e) {
+      print("Error updating history voucher: $e");
+    }
+  }
 
   Future<void> updatePin(String userId, String pin) async {
     try {

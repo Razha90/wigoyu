@@ -18,15 +18,10 @@ class NotificationService {
     );
   }
 
-  // Fungsi callback ketika notifikasi di-tap
   Future<void> onSelectNotification(String? payload) async {
-    // Tambahkan logika Anda di sini, seperti navigasi ke halaman tertentu
-    if (payload != null) {
-      // print("Payload notifikasi: $payload");
-    }
+    if (payload != null) {}
   }
 
-  // Fungsi untuk menampilkan notifikasi biasa
   Future<void> showNotification({
     required int id,
     required String title,
@@ -35,8 +30,8 @@ class NotificationService {
   }) async {
     const AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
-      'channel_id', // ID channel
-      'General Notifications', // Nama channel
+      'channel_id',
+      'General Notifications',
       channelDescription: 'This channel is used for general notifications.',
       importance: Importance.high,
       priority: Priority.high,
@@ -48,11 +43,11 @@ class NotificationService {
 
     try {
       await _notificationsPlugin.show(
-        id, // ID unik notifikasi
-        title, // Judul notifikasi
-        body, // Isi notifikasi
+        id,
+        title,
+        body,
         notificationDetails,
-        payload: payload, // Data tambahan yang bisa dikirim bersama notifikasi
+        payload: payload,
       );
     } catch (e) {
       print("Error showing notification: $e");

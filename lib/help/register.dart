@@ -99,6 +99,7 @@ class Users {
   String? pin;
   List<UserNotification>? notifications;
   List<int>? vouchers;
+  List<int>? historyVoucher;
 
   Users({
     required this.id,
@@ -115,6 +116,7 @@ class Users {
     this.pin,
     this.notifications,
     this.vouchers,
+    this.historyVoucher,
   });
 
   Map<String, dynamic> toMap() {
@@ -135,6 +137,8 @@ class Users {
           ? jsonEncode(notifications!.map((n) => n.toJson()).toList())
           : null,
       'vouchers': vouchers != null ? jsonEncode(vouchers) : null,
+      'historyVoucher':
+          historyVoucher != null ? jsonEncode(historyVoucher) : null,
     };
   }
 
@@ -161,6 +165,9 @@ class Users {
           : null,
       vouchers: map['vouchers'] != null
           ? List<int>.from(jsonDecode(map['vouchers']))
+          : null,
+      historyVoucher: map['historyVoucher'] != null
+          ? List<int>.from(jsonDecode(map['historyVoucher']))
           : null,
     );
   }
