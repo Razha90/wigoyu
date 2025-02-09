@@ -42,7 +42,9 @@ class User extends ChangeNotifier {
     String myPhoto = await _addImage(userId);
     String? myPin = await _addPin(userId);
     List<UserNotification>? myNotification = await _addNotidication(userId);
+
     List<int>? myVoucher = await _addVoucher(userId);
+
     List<int>? myHistoryVoucher = await _addHistoryVoucher(userId);
 
     saveUserToLocal(name, userId, mySaldo, history, myPhoto, email, myPin,
@@ -191,7 +193,8 @@ class User extends ChangeNotifier {
     List<Users> users = await UserPreferences.getAllUsers();
     Users? user = users.firstWhere((user) => user.id == userId);
     List<int>? voucherIds = user.vouchers;
-    _voucher = List.from(voucherIds!);
+    _voucher = voucherIds;
+
     return voucherIds;
   }
 
@@ -199,7 +202,7 @@ class User extends ChangeNotifier {
     List<Users> users = await UserPreferences.getAllUsers();
     Users? user = users.firstWhere((user) => user.id == userId);
     List<int>? voucherIds = user.historyVoucher;
-    _historyVoucher = List.from(voucherIds!);
+    _historyVoucher = voucherIds;
     return voucherIds;
   }
 

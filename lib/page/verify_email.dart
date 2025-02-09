@@ -84,17 +84,26 @@ class _VerifyEmailState extends State<VerifyEmail> {
             photo: matchingUser.photo,
             pin: matchingUser.pin,
             notifications: matchingUser.notifications,
+            vouchers: matchingUser.vouchers,
+            historyVoucher: matchingUser.historyVoucher,
           );
+          print("test 1");
 
           allUsers[matchingUserIndex] = updatedUser;
+          print("test 2");
 
           await UserPreferences.saveAllUsers(allUsers);
           final idNotif = generateRandomNumberString(5);
+          print("test 3");
 
           if (context.mounted) {
             final userProvider = Provider.of<User>(context, listen: false);
+            print("test 4");
+
             await userProvider.login(matchingUser.name!, matchingUser.id,
                 matchingUser.history!, matchingUser.email!);
+            print("test 5");
+
             userProvider.updateNotification(
                 userProvider.userId!,
                 UserNotification(
