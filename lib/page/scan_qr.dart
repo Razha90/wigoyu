@@ -8,7 +8,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:wigoyu/app_color.dart';
+import 'package:wigoyu/help/random_string.dart';
 import 'package:wigoyu/help/user.dart';
+import 'package:wigoyu/model/user_notification.dart';
 import 'package:wigoyu/model/user_voucher.dart';
 
 class ScannerScreen extends StatefulWidget {
@@ -41,31 +43,61 @@ class _ScannerScreenState extends State<ScannerScreen> {
     try {
       Map<String, dynamic> jsonData = jsonDecode(text);
       UserVoucher voucher = UserVoucher.fromJson(jsonData);
-      user.updateHistoryVoucher(user.userId!, voucher.id!);
-      user.deleteVoucher(user.userId!, voucher.id!);
-
-      if (mounted) {
-        QuickAlert.show(
-          disableBackBtn: true,
-          context: context,
-          showCancelBtn: true,
-          type: QuickAlertType.success,
-          onConfirmBtnTap: () {
-            _controllerScan.start();
-            Navigator.pop(context);
-            return;
-          },
-          onCancelBtnTap: () {
-            _controllerScan.dispose();
-            Navigator.pop(context);
-            Navigator.pop(context);
-            return;
-          },
-          confirmBtnText: "Scan Lagi",
-          cancelBtnText: "Kembali",
-          title: 'Hasil Scan',
-          text: "Voucher Berhasil Di Scan\n${voucher.name}",
-        );
+      if (user.voucher!.contains(voucher.id)) {
+        await user.updateHistoryVoucher(user.userId!, voucher.id!);
+        await user.deleteVoucher(user.userId!, voucher.id!);
+        await user.updateNotification(
+            user.userId!,
+            UserNotification(
+                name: "Voucher ${voucher.name}",
+                text: "Voucher ${voucher.name} telah digunakan",
+                id: generateRandomNumberString(6),
+                open: false));
+        if (mounted) {
+          QuickAlert.show(
+            disableBackBtn: true,
+            context: context,
+            showCancelBtn: true,
+            type: QuickAlertType.success,
+            onConfirmBtnTap: () {
+              _controllerScan.start();
+              Navigator.pop(context);
+              return;
+            },
+            onCancelBtnTap: () {
+              _controllerScan.dispose();
+              Navigator.pop(context);
+              Navigator.pop(context);
+              return;
+            },
+            confirmBtnText: "Scan Lagi",
+            cancelBtnText: "Kembali",
+            title: 'Hasil Scan',
+            text: "Voucher Berhasil Di Scan\n${voucher.name}",
+          );
+        }
+      } else {
+        if (mounted) {
+          QuickAlert.show(
+            disableBackBtn: true,
+            context: context,
+            showCancelBtn: true,
+            type: QuickAlertType.error,
+            onConfirmBtnTap: () {
+              _controllerScan.start();
+              Navigator.pop(context);
+            },
+            onCancelBtnTap: () {
+              _controllerScan.dispose();
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            confirmBtnText: "Coba Lagi",
+            cancelBtnText: "Kembali",
+            title: 'Voucher Tidak Ditemukan',
+            text: "Voucher tidak ditemukan atau sudah digunakan",
+          );
+        }
       }
     } catch (e) {
       if (mounted) {

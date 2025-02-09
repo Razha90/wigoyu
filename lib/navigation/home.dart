@@ -98,6 +98,11 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userState = Provider.of<User>(context);
     return Scaffold(
@@ -865,43 +870,6 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            userState.logout();
-                          },
-                          child: Text("Logout")),
-                      ElevatedButton(
-                          onPressed: () async {
-                            await UserPreferences.deleteAllUsers();
-                          },
-                          child: Text('Clear User')),
-                      ElevatedButton(
-                          onPressed: () async {
-                            Navigator.pushNamed(context, '/', arguments: 3);
-                          },
-                          child: Text('Go To Profile'))
-                    ],
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            userState.logout();
-                          },
-                          child: Text("Logout")),
-                      ElevatedButton(
-                          onPressed: () async {
-                            await UserPreferences.deleteAllUsers();
-                          },
-                          child: Text('Clear User'))
-                    ],
-                  ),
-                )
               ],
             ),
           ),
@@ -931,56 +899,3 @@ class StickyHeaderDelegate extends SliverPersistentHeaderDelegate {
     return true;
   }
 }
-
-
-//  Center(
-//                 child: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: <Widget>[
-//                     Consumer<User>(builder: (context, user, child) {
-//                       if (user.isLoggedIn) {
-//                         return Text('Welcome, ${user.name}');
-//                       } else {
-//                         return ElevatedButton(
-//                           onPressed: () {
-//                             user.login('John Doe', 'user123');
-//                           },
-//                           child: Text('Login'),
-//                         );
-//                       }
-//                     }),
-//                     ElevatedButton(
-//                       onPressed: () {
-//                         bool? lawak = userState.isLoggedIn;
-//                         print(lawak);
-//                       },
-//                       child: const Text('Check'),
-//                     ),
-//                     ElevatedButton(
-//                       onPressed: () {
-//                         notification.showNotification(
-//                             id: 1, title: "sasa", body: "Sasas");
-//                       },
-//                       child: const Text('Go to Search Page'),
-//                     ),
-//                     ElevatedButton(
-//                       onPressed: () async {
-//                         // await UserPreferences.deleteAllUsers();
-//                         final lawak = await UserPreferences.getAllUsers();
-//                         for (var user in lawak) {
-//                           print(
-//                               'User ID: ${user.id}, Name: ${user.name}, email: ${user.email}, verified: ${user.verified}');
-//                         }
-//                       },
-//                       child: const Text('Go to Search Page'),
-//                     ),
-//                     ElevatedButton(
-//                       onPressed: () async {
-//                         Navigator.pushNamed(context, '/');
-//                       },
-//                       child: const Text('Home'),
-//                     )
-//                   ],
-//                 ),
-//               ),
-

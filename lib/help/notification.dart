@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:wigoyu/app_color.dart';
 
 class NotificationService {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
@@ -8,7 +9,7 @@ class NotificationService {
   Future<void> initialize() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings(
-            '@mipmap/ic_launcher'); // Ganti dengan ikon notifikasi Anda
+            'app_icon'); // Ganti dengan ikon notifikasi Anda
 
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
@@ -29,14 +30,14 @@ class NotificationService {
     String? payload,
   }) async {
     const AndroidNotificationDetails androidNotificationDetails =
-        AndroidNotificationDetails(
-      'channel_id',
-      'General Notifications',
-      channelDescription: 'This channel is used for general notifications.',
-      importance: Importance.high,
-      priority: Priority.high,
-      ticker: 'ticker',
-    );
+        AndroidNotificationDetails('channel_id', 'General Notifications',
+            channelDescription:
+                'This channel is used for general notifications.',
+            importance: Importance.max,
+            priority: Priority.high,
+            playSound: true,
+            sound: RawResourceAndroidNotificationSound('effect'),
+            audioAttributesUsage: AudioAttributesUsage.notification);
 
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidNotificationDetails);

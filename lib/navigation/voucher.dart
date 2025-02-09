@@ -137,7 +137,8 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                           ),
                         );
                       }
-                      if (user.voucher == null || user.voucher!.isEmpty) {
+                      if (user.historyVoucher == null ||
+                          user.historyVoucher!.isEmpty) {
                         return Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -151,7 +152,6 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                           ),
                         );
                       }
-
                       if (index == 0) {
                         return SingleChildScrollView(
                           child: Padding(
@@ -448,8 +448,8 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                               children: List.generate(
                                   user.historyVoucher?.length ?? 0, (index) {
                                 return FutureBuilder<ItemProduct?>(
-                                  future:
-                                      _getParentProduct(user.voucher![index]),
+                                  future: _getParentProduct(
+                                      user.historyVoucher![index]),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
                                         ConnectionState.waiting) {
@@ -479,7 +479,8 @@ class _VoucherState extends State<Voucher> with SingleTickerProviderStateMixin {
                                     final UserVoucher voucher = parentData
                                         .voucher
                                         .firstWhere((element) =>
-                                            element.id == user.voucher![index]);
+                                            element.id ==
+                                            user.historyVoucher![index]);
 
                                     return Container(
                                       decoration: BoxDecoration(
