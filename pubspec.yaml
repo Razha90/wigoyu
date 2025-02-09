@@ -56,6 +56,11 @@ dependencies:
   page_transition: ^2.2.1
   intl: ^0.20.2
   coupon_uikit: ^0.2.1
+  cherry_toast: ^1.12.0
+  corner_ribbon: ^0.0.1
+  simple_numpad: ^1.0.5
+  pretty_qr_code: ^3.3.0
+  path_provider: ^2.1.5
 
 dev_dependencies:
   flutter_test:
@@ -101,11 +106,23 @@ flutter:
     - assets/icons/17.png
     - assets/icons/18.png
     - assets/icons/19.png
+    - assets/icons/bank.png
+    - assets/icons/bri.png
+    - assets/icons/bni.png
+    - assets/icons/mandiri.png
+    - assets/icons/bca.png
+    - assets/icons/alfamart.png
+    - assets/icons/indomaret.png
+    - assets/icons/ovo.png
+    - assets/icons/gopay.png
+    - assets/icons/dana.png
+    - assets/icons/shoppe.png
     - assets/data/data.json
     - assets/data/category.json
     - assets/data/new_merchant.json
     - assets/icons/spesial_biru.png
     - assets/icons/spesial_hijau.png
+    - assets/data/payment.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

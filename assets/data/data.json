@@ -71,6 +71,18 @@
         ]
       },
       {
+        "id": 9704,
+        "name": "Special Promo",
+        "description": "Voucher diskon 10% untuk semua menu",
+        "discount": 10,
+        "price": 0,
+        "product": [
+          
+          5446,
+          5447
+        ]
+      },
+      {
         "id": 4015,
         "name": "Voucher Kopi Hitam",
         "description": "Diskon 15% untuk Kopi Hitam",

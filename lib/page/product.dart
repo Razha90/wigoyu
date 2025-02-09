@@ -172,120 +172,153 @@ class _ProductState extends State<Product> {
                                         product.voucher.length, (indexFac) {
                                       if (product.voucher[indexFac].discount !=
                                           0) {
-                                        return CouponCard(
-                                            height: 130,
-                                            curveAxis: Axis.vertical,
-                                            curvePosition: 200,
-                                            // backgroundColor: AppColors.hijauMuda,
-                                            decoration: BoxDecoration(
-                                                color: AppColors.putih),
-                                            firstChild: Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.hijauMuda),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(10.0),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      "${product.voucher[indexFac].discount}%",
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                              color: AppColors
-                                                                  .putih,
-                                                              fontSize: 35,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                    ),
-                                                    Divider(
-                                                      color: AppColors.putih,
-                                                    ),
-                                                    Text(
-                                                      product.voucher[indexFac]
-                                                          .name,
-                                                      maxLines: 2,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        color: AppColors.putih,
-                                                        fontSize: 14,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            secondChild: Container(
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.hijauMuda
-                                                      .withAlpha(120)),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "Rp.${formatCurrency.format(product.voucher[indexFac].price)}",
-                                                    style: GoogleFonts.poppins(
-                                                        color:
-                                                            AppColors.hijauTua,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 16),
-                                                  ),
-                                                  ElevatedButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                          overlayColor:
+                                        return Column(
+                                          children: [
+                                            CouponCard(
+                                                height: 130,
+                                                curveAxis: Axis.vertical,
+                                                curvePosition: 200,
+                                                // backgroundColor: AppColors.hijauMuda,
+                                                decoration: BoxDecoration(
+                                                    color: AppColors.putih),
+                                                firstChild: Container(
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          AppColors.hijauMuda),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10.0),
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          "${product.voucher[indexFac].discount}%",
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                                  color:
+                                                                      AppColors
+                                                                          .putih,
+                                                                  fontSize: 35,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                        ),
+                                                        Divider(
+                                                          color:
                                                               AppColors.putih,
-                                                          backgroundColor:
-                                                              AppColors.biruMuda
-                                                                  .withAlpha(
-                                                                      180),
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      30,
-                                                                  vertical: 5),
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          10)))),
-                                                      onPressed: () {
-                                                        Navigator.push(
-                                                            context,
-                                                            PageTransition(
-                                                                type: PageTransitionType
-                                                                    .rightToLeft,
-                                                                child: Payment(
-                                                                    title: product
+                                                        ),
+                                                        Text(
+                                                          product
+                                                              .voucher[indexFac]
+                                                              .name!,
+                                                          maxLines: 2,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            color:
+                                                                AppColors.putih,
+                                                            fontSize: 14,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                secondChild: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: AppColors.hijauMuda
+                                                          .withAlpha(120)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      if (!(product
+                                                              .voucher[indexFac]
+                                                              .price ==
+                                                          0))
+                                                        Text(
+                                                          "Rp.${formatCurrency.format(product.voucher[indexFac].price)}",
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                                  color: AppColors
+                                                                      .hijauTua,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 16),
+                                                        ),
+                                                      ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(
+                                                              overlayColor:
+                                                                  AppColors
+                                                                      .putih,
+                                                              backgroundColor:
+                                                                  AppColors
+                                                                      .biruMuda
+                                                                      .withAlpha(
+                                                                          180),
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          30,
+                                                                      vertical:
+                                                                          5),
+                                                              shape: RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius.all(
+                                                                          Radius.circular(
+                                                                              10)))),
+                                                          onPressed: () {
+                                                            Navigator.push(
+                                                                context,
+                                                                PageTransition(
+                                                                    type: PageTransitionType
+                                                                        .rightToLeft,
+                                                                    child: Payment(
+                                                                        title: product
+                                                                            .voucher[indexFac]
+                                                                            .id!)));
+                                                          },
+                                                          child: Text(
+                                                            !(product
                                                                         .voucher[
                                                                             indexFac]
-                                                                        .id)));
-                                                      },
-                                                      child: Text(
-                                                        "Beli",
-                                                        style:
-                                                            GoogleFonts.barlow(
+                                                                        .price ==
+                                                                    0)
+                                                                ? "Beli"
+                                                                : "Gratis",
+                                                            style: GoogleFonts.barlow(
                                                                 color: AppColors
                                                                     .putih,
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w600),
-                                                      ))
-                                                ],
-                                              ),
-                                            ));
+                                                          ))
+                                                    ],
+                                                  ),
+                                                )),
+                                            indexFac ==
+                                                    product.voucher.length - 1
+                                                ? SizedBox(
+                                                    height: 100,
+                                                  )
+                                                : SizedBox(),
+                                          ],
+                                        );
                                       } else {
                                         return SizedBox();
                                       }

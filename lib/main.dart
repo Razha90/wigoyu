@@ -11,7 +11,6 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   final NotificationService notificationService = NotificationService();
   await notificationService.initialize();
-
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => User()),
@@ -38,9 +37,9 @@ class _StartingState extends State<Starting> {
     return MaterialApp(
       theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
-        cursorColor: AppColors.putih,
-        selectionColor: AppColors.putih,
-        selectionHandleColor: AppColors.putih,
+        cursorColor: AppColors.hijauMuda,
+        selectionColor: AppColors.hijauMuda.withAlpha(50),
+        selectionHandleColor: AppColors.hijauMuda,
       )),
       initialRoute: '/',
       onGenerateRoute: generateRoute,

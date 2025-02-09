@@ -1,3 +1,5 @@
+import 'package:wigoyu/model/user_voucher.dart';
+
 class ItemProduct {
   final String category;
   final String name;
@@ -11,7 +13,7 @@ class ItemProduct {
   final String map;
   final List<SocialMedia> medsos;
   final List<Review> review;
-  final List<Voucher> voucher;
+  final List<UserVoucher> voucher;
 
   ItemProduct({
     required this.category,
@@ -48,49 +50,9 @@ class ItemProduct {
           .map((review) => Review.fromJson(review))
           .toList(),
       voucher: (json['voucher'] as List) // Parsing voucher
-          .map((voucher) => Voucher.fromJson(voucher))
+          .map((voucher) => UserVoucher.fromJson(voucher))
           .toList(),
     );
-  }
-}
-
-class Voucher {
-  final int id;
-  final String name;
-  final String description;
-  final int discount;
-  final int price;
-  final List<int> product;
-
-  Voucher({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.discount,
-    required this.price,
-    required this.product,
-  });
-
-  factory Voucher.fromJson(Map<String, dynamic> json) {
-    return Voucher(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      discount: json['discount'],
-      price: json['price'],
-      product: List<int>.from(json['product']), // Konversi ke List<int>
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'discount': discount,
-      'price': price,
-      'product': product,
-    };
   }
 }
 

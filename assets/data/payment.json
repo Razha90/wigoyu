@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alfamart",
+    "icon": "assets/icons/alfamart.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "primary"
+  },
+  {
+    "id": 2,
+    "name": "Indomaret",
+    "icon": "assets/icons/indomaret.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "primary"
+  },
+  {
+    "id": 3,
+    "name": "Bank BCA",
+    "icon": "assets/icons/bca.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "bank"
+  },
+  {
+    "id": 4,
+    "name": "Bank BNI",
+    "icon": "assets/icons/bni.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "bank"
+  },
+  {
+    "id": 5,
+    "name": "Bank BRI",
+    "icon": "assets/icons/bri.png",
+    "account_number": "1234567890",
+    "account_name": "",
+    "type": "bank"
+  },
+  {
+    "id": 6,
+    "name": "Bank Mandiri",
+    "icon": "assets/icons/mandiri.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "bank"
+  },
+  {
+    "id": 7,
+    "name": "OVO",
+    "icon": "assets/icons/ovo.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "wallet"
+  },
+  {
+    "id": 8,
+    "name": "GoPay",
+    "icon": "assets/icons/gopay.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "wallet"
+  },
+  {
+    "id": 9,
+    "name": "DANA",
+    "icon": "assets/icons/dana.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "wallet"
+  },
+  {
+    "id": 10,
+    "name": "Shoppe Pay",
+    "icon": "assets/icons/shoppe.png",
+    "account_number": "",
+    "account_name": "",
+    "type": "wallet"
+  }
+]

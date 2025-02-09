@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -36,6 +37,7 @@ class _HomeState extends State<Home> {
   late Future<List<List<ItemCategory>>> _futureData;
   late Future<List<ItemProduct>> _futureItemProduct;
   late Future<List<NewMerchant>> _futureNewMerchant;
+  final NumberFormat _formatter = NumberFormat("#,###", "id_ID");
 
   final List<String> imageUrls = [
     'https://wigoyu.com/img/banner/202408231133KOPI%20KUNI%20LITE.webp', // Ganti dengan URL gambar Anda
@@ -250,19 +252,59 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ),
-                              ElevatedButton(
-                                onPressed: () {},
-                                style: ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        Colors.transparent),
-                                    padding: WidgetStatePropertyAll(
-                                        EdgeInsets.all(0)),
-                                    elevation: WidgetStateProperty.all(0)),
-                                child: Icon(
-                                  Icons.notifications,
-                                  size: 40,
-                                  color: Colors.orangeAccent,
-                                ),
+                              Stack(
+                                children: [
+                                  IconButton(
+                                    style: ButtonStyle(
+                                        backgroundColor: WidgetStatePropertyAll(
+                                            Colors.transparent),
+                                        padding: WidgetStatePropertyAll(
+                                            EdgeInsets.zero),
+                                        elevation: WidgetStateProperty.all(0)),
+                                    onPressed: () {
+                                      context.pushNamedTransition(
+                                          routeName: '/notification-page',
+                                          type: PageTransitionType.rightToLeft);
+                                    },
+                                    icon: Icon(
+                                      Icons.notifications,
+                                      size: 40,
+                                      color: Colors.orangeAccent,
+                                    ),
+                                  ),
+                                  Consumer<User>(
+                                      builder: (context, user, child) {
+                                    final int notificationCount =
+                                        user.notification == null
+                                            ? 0 // Jika null, kembalikan 0
+                                            : user.notification!
+                                                .where((element) =>
+                                                    element.open == false)
+                                                .length;
+
+                                    if (notificationCount > 0) {
+                                      return Positioned(
+                                        right: 0,
+                                        top: 0,
+                                        child: Container(
+                                          padding: EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            shape: BoxShape.circle,
+                                          ),
+                                          child: Text(
+                                            '$notificationCount',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    return SizedBox();
+                                  }),
+                                ],
                               )
                             ],
                           ),
@@ -299,10 +341,10 @@ class _HomeState extends State<Home> {
                                         builder: (context, user, child) {
                                           if (user.isLoggedIn) {
                                             return Text(
-                                              'Rp.${user.saldo}',
+                                              'Rp. ${_formatter.format(int.parse(user.saldo!))}',
                                               style: GoogleFonts.jaldi(
                                                 color: AppColors.putih,
-                                                fontSize: 12,
+                                                fontSize: 16,
                                               ),
                                             );
                                           }
@@ -366,8 +408,12 @@ class _HomeState extends State<Home> {
                                             height: 30,
                                             child: ElevatedButton(
                                               onPressed: () {
-                                                Navigator.pushNamed(
-                                                    context, '/topup');
+                                                context.pushNamedTransition(
+                                                    routeName: '/top-up',
+                                                    type: PageTransitionType
+                                                        .rightToLeft,
+                                                    duration: Duration(
+                                                        milliseconds: 450));
                                               },
                                               style: ButtonStyle(
                                                   backgroundColor:
@@ -394,40 +440,40 @@ class _HomeState extends State<Home> {
                                           )
                                         ],
                                       ),
-                                      Column(
-                                        children: [
-                                          SizedBox(
-                                            height: 30,
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Navigator.pushNamed(
-                                                    context, '/transaction');
-                                              },
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      WidgetStatePropertyAll(
-                                                          Colors.transparent),
-                                                  padding:
-                                                      WidgetStatePropertyAll(
-                                                          EdgeInsets.all(0)),
-                                                  elevation:
-                                                      WidgetStateProperty.all(
-                                                          0)),
-                                              child: Icon(
-                                                Icons.history_edu_outlined,
-                                                size: 30,
-                                                color: AppColors.putih,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Transaksi',
-                                            style: GoogleFonts.jaldi(
-                                                color: AppColors.putih,
-                                                fontSize: 10),
-                                          )
-                                        ],
-                                      ),
+                                      // Column(
+                                      //   children: [
+                                      //     SizedBox(
+                                      //       height: 30,
+                                      //       child: ElevatedButton(
+                                      //         onPressed: () {
+                                      //           Navigator.pushNamed(
+                                      //               context, '/transaction');
+                                      //         },
+                                      //         style: ButtonStyle(
+                                      //             backgroundColor:
+                                      //                 WidgetStatePropertyAll(
+                                      //                     Colors.transparent),
+                                      //             padding:
+                                      //                 WidgetStatePropertyAll(
+                                      //                     EdgeInsets.all(0)),
+                                      //             elevation:
+                                      //                 WidgetStateProperty.all(
+                                      //                     0)),
+                                      //         child: Icon(
+                                      //           Icons.history_edu_outlined,
+                                      //           size: 30,
+                                      //           color: AppColors.putih,
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //     Text(
+                                      //       'Transaksi',
+                                      //       style: GoogleFonts.jaldi(
+                                      //           color: AppColors.putih,
+                                      //           fontSize: 10),
+                                      //     )
+                                      //   ],
+                                      // ),
                                     ],
                                   )
                                 ],

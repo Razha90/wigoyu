@@ -1,0 +1,41 @@
+class PaymentMethod {
+  final int id;
+  final String name;
+  final String icon;
+  final String accountNumber;
+  final String accountName;
+  final String type;
+
+  PaymentMethod({
+    required this.id,
+    required this.name,
+    required this.icon,
+    this.accountNumber = "",
+    this.accountName = "",
+    required this.type,
+  });
+
+  // Factory method untuk membuat objek dari Map (JSON)
+  factory PaymentMethod.fromJson(Map<String, dynamic> json) {
+    return PaymentMethod(
+      id: json['id'],
+      name: json['name'],
+      icon: json['icon'],
+      accountNumber: json['account_number'] ?? "",
+      accountName: json['account_name'] ?? "",
+      type: json['type'],
+    );
+  }
+
+  // Method untuk mengubah objek menjadi Map (JSON)
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "name": name,
+      "icon": icon,
+      "account_number": accountNumber,
+      "account_name": accountName,
+      "type": type,
+    };
+  }
+}

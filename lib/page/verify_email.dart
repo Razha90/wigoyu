@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
@@ -5,9 +7,11 @@ import 'package:provider/provider.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:wigoyu/app_color.dart';
 import 'package:wigoyu/help/notification.dart';
+import 'package:wigoyu/help/random_string.dart';
 import 'package:wigoyu/help/register.dart';
 import 'package:wigoyu/help/user.dart';
 import 'package:timer_button/timer_button.dart';
+import 'package:wigoyu/model/user_notification.dart';
 import 'package:wigoyu/navigation/bottom_navigation.dart';
 
 class VerifyEmail extends StatefulWidget {
@@ -27,6 +31,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
   late String email;
   late String id;
   final TextEditingController pinController = TextEditingController();
+  bool isEnable = true;
+
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
@@ -57,6 +63,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
   Widget build(BuildContext context) {
     // final user = Provider.of<User>(context, listen: true);
     final notification = NotificationService();
+
     void loginUser(String id) async {
       try {
         final allUsers = await UserPreferences.getAllUsers();
@@ -75,27 +82,30 @@ class _VerifyEmailState extends State<VerifyEmail> {
             saldo: matchingUser.saldo,
             history: [],
             photo: matchingUser.photo,
+            pin: matchingUser.pin,
+            notifications: matchingUser.notifications,
           );
 
-          // Memperbarui data pengguna di SharedPreferences
-          // updatedUser.history!.removeAt(0);
           allUsers[matchingUserIndex] = updatedUser;
 
           await UserPreferences.saveAllUsers(allUsers);
-
-          // List<Users> newUsers = await UserPreferences.getAllUsers();
-          // Users? newUser = newUsers.firstWhere(
-          //   (user) => user.id == matchingUser.id,
-          //   orElse: () =>
-          //       throw Exception("User with ID $matchingUser.id not found"),
-          // );
-          // newUser.history!.removeAt(0);
-          // await UserPreferences.saveAllUsers(newUsers);
+          final idNotif = generateRandomNumberString(5);
 
           if (context.mounted) {
             final userProvider = Provider.of<User>(context, listen: false);
-            userProvider.login(matchingUser.name!, matchingUser.id,
+            await userProvider.login(matchingUser.name!, matchingUser.id,
                 matchingUser.history!, matchingUser.email!);
+            userProvider.updateNotification(
+                userProvider.userId!,
+                UserNotification(
+                  name: 'Email',
+                  text: 'Email berhasil diverifikasi',
+                  id: idNotif,
+                  open: false,
+                ));
+          }
+
+          if (context.mounted) {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => BottomNavigation()),
@@ -109,13 +119,6 @@ class _VerifyEmailState extends State<VerifyEmail> {
         print("Terjadi kesalahan: $e");
       }
     }
-
-    // user.addListener(() {
-    //   if (user.isLoggedIn) {
-    //     // Pindahkan pengguna ke halaman utama jika login berhasil
-    //     Navigator.pushReplacementNamed(context, '/home');
-    //   }
-    // });
 
     double sizeWidth = MediaQuery.of(context).size.width;
 
@@ -200,27 +203,33 @@ class _VerifyEmailState extends State<VerifyEmail> {
                         Directionality(
                           textDirection: TextDirection.ltr,
                           child: Pinput(
+                            enabled: isEnable,
                             controller: pinController,
                             length: 5,
-                            // You can pass your own SmsRetriever implementation based on any package
-                            // in this example we are using the SmartAuth
-                            // smsRetriever: smsRetriever,
-                            // controller: pinController,
-                            // focusNode: focusNode,
                             defaultPinTheme: defaultPinTheme,
                             separatorBuilder: (index) =>
                                 const SizedBox(width: 8),
                             validator: (value) {
                               // debugPrint('ini token $token ini value $value');
                               if (value == token) {
-                                loginUser(id);
-                                pinController.clear();
                                 return null;
                               }
                               return 'Pin salah';
                             },
                             hapticFeedbackType: HapticFeedbackType.lightImpact,
-                            onCompleted: (pin) {
+                            onCompleted: (pin) async {
+                              setState(() {
+                                isEnable = false;
+                              });
+                              await Future.delayed(Duration(seconds: 2));
+                              if (pin == token) {
+                                loginUser(id);
+                                pinController.clear();
+                              }
+                              setState(() {
+                                isEnable = true;
+                              });
+                              return;
                               // debugPrint('onCompleted: $pin');
                             },
                             onChanged: (value) {
@@ -261,7 +270,6 @@ class _VerifyEmailState extends State<VerifyEmail> {
                                 ),
                               ),
                             ),
-
                             errorPinTheme: defaultPinTheme.copyBorderWith(
                               border: Border(
                                 bottom: BorderSide(

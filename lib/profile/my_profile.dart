@@ -40,8 +40,6 @@ class _MyProfileState extends State<MyProfile> {
   }
 
   void _editName(String name) {
-    Navigator.pop(context);
-
     if (name.isEmpty) {
       QuickAlert.show(
           context: context,
@@ -70,6 +68,7 @@ class _MyProfileState extends State<MyProfile> {
     }
 
     users.updateName(users.userId!, name);
+    Navigator.pop(context);
   }
 
   Future<String> _getPhone(String userId) async {

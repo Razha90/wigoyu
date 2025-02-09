@@ -4,12 +4,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wigoyu/help/user.dart';
 import 'package:wigoyu/navigation/bottom_navigation.dart';
 import 'package:wigoyu/page/category.dart';
+import 'package:wigoyu/page/change_qris.dart';
 import 'package:wigoyu/page/login.dart';
+import 'package:wigoyu/page/make_pin.dart';
+import 'package:wigoyu/page/notification_page.dart';
 import 'package:wigoyu/page/payment.dart';
+import 'package:wigoyu/page/payment_check.dart';
+import 'package:wigoyu/page/payment_confirm.dart';
 import 'package:wigoyu/page/product.dart';
 import 'package:wigoyu/page/register.dart';
 import 'package:wigoyu/page/scan_qr.dart';
 import 'package:wigoyu/page/search.dart';
+import 'package:wigoyu/page/top_up.dart';
+import 'package:wigoyu/page/topup_section.dart';
 import 'package:wigoyu/page/verify_email.dart';
 import 'package:wigoyu/profile/my_profile.dart';
 
@@ -21,7 +28,10 @@ Future<bool> isLoggedIn() async {
 Route<dynamic>? generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case BottomNavigation.routeName:
-      final args = settings.arguments as int?;
+      int args = settings.arguments as int? ?? 0;
+      if (args > 3) {
+        args = 0;
+      }
       return MaterialPageRoute(
         builder: (context) => BottomNavigation(
           initialIndex: args,
@@ -35,6 +45,50 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
         ),
       );
 
+    case ChangeQris.routeName:
+      final args = settings.arguments as int?;
+
+      if (args == null) {
+        return MaterialPageRoute(
+          builder: (context) => ChangeQris(),
+        );
+      }
+
+      return MaterialPageRoute(
+        builder: (context) => ChangeQris(
+          title: args,
+        ),
+      );
+    case PaymentCheck.routeName:
+      final args = settings.arguments as int;
+      return MaterialPageRoute(
+        builder: (context) => PaymentCheck(
+          title: args,
+        ),
+      );
+    case TopupSection.routeName:
+      final args = settings.arguments as int;
+      return MaterialPageRoute(
+        builder: (context) => TopupSection(
+          title: args,
+        ),
+      );
+    case PaymentConfirm.routeName:
+      final args = settings.arguments as int;
+      return MaterialPageRoute(
+        builder: (context) => PaymentConfirm(
+          title: args,
+        ),
+      );
+    case MakePin.routeName:
+      return MaterialPageRoute(
+        builder: (context) => MakePin(),
+      );
+    case TopUp.routeName:
+      return MaterialPageRoute(
+        builder: (context) => TopUp(),
+      );
+
     case MyProfile.routeName:
       return MaterialPageRoute(
         builder: (context) => MyProfile(),
@@ -46,6 +100,10 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
     case ScannerScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => ScannerScreen(),
+      );
+    case NotificationPage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => NotificationPage(),
       );
     case Product.routeName:
       final args = settings.arguments as Map<String, String?>;

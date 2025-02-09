@@ -1,10 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:wigoyu/app_color.dart';
 import 'package:wigoyu/help/notification.dart';
 import 'package:wigoyu/help/register.dart';
+import 'package:wigoyu/help/user.dart';
+import 'package:wigoyu/navigation/bottom_navigation.dart';
 import 'package:wigoyu/page/verify_email.dart';
 
 class Register extends StatefulWidget {
@@ -26,6 +30,19 @@ class _RegisterState extends State<Register> {
   final TextEditingController _referralController = TextEditingController();
   bool isChecked = false;
   String? asyncErrorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final userProvider = Provider.of<User>(context, listen: false);
+      if (userProvider.isLoggedIn) {
+        context.pushReplacementTransition(
+            child: BottomNavigation(), type: PageTransitionType.rightToLeft);
+        return;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +70,8 @@ class _RegisterState extends State<Register> {
           saldo: '0',
           verified: 'false',
           history: [],
-          photo: "");
+          photo: "",
+          pin: "");
 
       await UserPreferences.registerUser(newUser);
       notification.showNotification(id: 2, title: "Email Token", body: token);

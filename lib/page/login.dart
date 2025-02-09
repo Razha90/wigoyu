@@ -1,6 +1,9 @@
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:wigoyu/app_color.dart';
@@ -9,8 +12,9 @@ import 'package:wigoyu/help/user.dart';
 import 'package:wigoyu/navigation/bottom_navigation.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({super.key, this.title});
   static const String routeName = '/login';
+  final String? title;
 
   @override
   State<Login> createState() => _LoginState();
@@ -21,8 +25,33 @@ class _LoginState extends State<Login> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // String? _email;
-  // String? _password;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final userProvider = Provider.of<User>(context, listen: false);
+      if (userProvider.isLoggedIn) {
+        context.pushReplacementTransition(
+            child: BottomNavigation(), type: PageTransitionType.rightToLeft);
+        return;
+      }
+      if (widget.title != null) {
+        CherryToast.warning(
+          animationDuration: Duration(milliseconds: 500),
+          animationType: AnimationType.fromTop,
+          title: Text(
+            'Perhatian',
+            style: GoogleFonts.jaldi(fontSize: 16),
+          ),
+          action: Text(
+            widget.title!,
+            style: GoogleFonts.poppins(
+                fontSize: 12, color: AppColors.hitam.withAlpha(90)),
+          ),
+        ).show(context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +75,9 @@ class _LoginState extends State<Login> {
             verified: '',
             saldo: '',
             history: [],
-            photo: ''),
+            photo: '',
+            pin: '',
+            notifications: []),
       );
       if (user.id.isEmpty) {
         return false;
@@ -396,7 +427,11 @@ class _LoginState extends State<Login> {
                             icon: Icon(Icons.arrow_back),
                             color: AppColors.biruMuda,
                             onPressed: () {
-                              Navigator.pop(context);
+                              if (Navigator.canPop(context)) {
+                                Navigator.pop(context);
+                              } else {
+                                Navigator.pushReplacementNamed(context, "/");
+                              }
                             },
                           ),
                         ),

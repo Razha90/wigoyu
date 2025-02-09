@@ -21,69 +21,82 @@ class _ScannerScreenState extends State<ScannerScreen> {
   // File? _image;
   bool _isScanning = false;
 
+  bool _isPickingImage = false;
   Future<void> _pickImage() async {
-    final pickedFile =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (_isPickingImage) return; // Cegah jika masih dalam proses
+    _isPickingImage = true;
 
-    if (pickedFile != null) {
-      try {
-        BarcodeCapture? bordScan =
-            await _controllerScan.analyzeImage(pickedFile.path);
-        final List<Barcode> codes = bordScan!.barcodes;
-        for (final code in codes) {
-          final String? rawValue = code.rawValue; // Teks dalam barcode
-          if (rawValue!.isNotEmpty) {
-            _controllerScan.stop();
-            setState(() {
-              _isScanning = true;
-            });
-            await Future.delayed(Duration(seconds: 2));
-            setState(() {
-              _isScanning = false;
-            });
-            if (mounted) {
-              QuickAlert.show(
-                disableBackBtn: true,
-                context: context,
-                showCancelBtn: true,
-                type: QuickAlertType.success,
-                onConfirmBtnTap: () {
-                  _controllerScan.start();
-                  Navigator.pop(context);
-                  return;
-                },
-                onCancelBtnTap: () {
-                  Navigator.pushNamed(context, "/");
-                },
-                confirmBtnText: "Scan Lagi",
-                cancelBtnText: "Kembali",
-                title: 'Hasil Scan',
-                text: rawValue,
-              );
+    try {
+      final pickedFile =
+          await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        try {
+          BarcodeCapture? bordScan =
+              await _controllerScan.analyzeImage(pickedFile.path);
+          final List<Barcode> codes = bordScan!.barcodes;
+          for (final code in codes) {
+            final String? rawValue = code.rawValue; // Teks dalam barcode
+            if (rawValue!.isNotEmpty) {
+              _controllerScan.stop();
+              setState(() {
+                _isScanning = true;
+              });
+              await Future.delayed(Duration(seconds: 2));
+              setState(() {
+                _isScanning = false;
+              });
+              if (mounted) {
+                QuickAlert.show(
+                  disableBackBtn: true,
+                  context: context,
+                  showCancelBtn: true,
+                  type: QuickAlertType.success,
+                  onConfirmBtnTap: () {
+                    _controllerScan.start();
+                    Navigator.pop(context);
+                    return;
+                  },
+                  onCancelBtnTap: () {
+                    _controllerScan.dispose();
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                    return;
+                  },
+                  confirmBtnText: "Scan Lagi",
+                  cancelBtnText: "Kembali",
+                  title: 'Hasil Scan',
+                  text: rawValue,
+                );
+              }
             }
           }
-        }
-      } catch (e) {
-        if (mounted) {
-          QuickAlert.show(
-            disableBackBtn: true,
-            context: context,
-            showCancelBtn: true,
-            type: QuickAlertType.error,
-            onConfirmBtnTap: () {
-              _controllerScan.start();
-              Navigator.pop(context);
-            },
-            onCancelBtnTap: () {
-              Navigator.pushNamed(context, "/");
-            },
-            confirmBtnText: "Coba Lagi",
-            cancelBtnText: "Kembali",
-            title: 'Maaaf',
-            text: "Gagal membaca barcode",
-          );
+        } catch (e) {
+          if (mounted) {
+            QuickAlert.show(
+              disableBackBtn: true,
+              context: context,
+              showCancelBtn: true,
+              type: QuickAlertType.error,
+              onConfirmBtnTap: () {
+                _controllerScan.start();
+                Navigator.pop(context);
+              },
+              onCancelBtnTap: () {
+                _controllerScan.dispose();
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+              confirmBtnText: "Coba Lagi",
+              cancelBtnText: "Kembali",
+              title: 'Maaaf',
+              text: "Gagal membaca barcode",
+            );
+          }
         }
       }
+    } finally {
+      _isPickingImage = false;
     }
   }
 
@@ -120,6 +133,12 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   @override
+  void dispose() {
+    _controllerScan.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
@@ -149,7 +168,10 @@ class _ScannerScreenState extends State<ScannerScreen> {
                       return;
                     },
                     onCancelBtnTap: () {
-                      Navigator.pushNamed(context, "/");
+                      _controllerScan.dispose();
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      return;
                     },
                     confirmBtnText: "Scan Lagi",
                     cancelBtnText: "Kembali",

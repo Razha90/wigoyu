@@ -1,5 +1,9 @@
 [
   {
+    "title": "Semua",
+    "image": "assets/icons/1.png"
+  },
+  {
     "title": "Kuliner",
     "image": "assets/icons/11.png"
   },
@@ -70,9 +74,5 @@
   {
     "title": "Komunitas",
     "image": "assets/icons/12.png"
-  },
-  {
-    "title": "Dan lain-lain",
-    "image": "assets/icons/1.png"
   }
 ]

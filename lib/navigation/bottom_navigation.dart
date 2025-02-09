@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wigoyu/app_color.dart';
 import 'package:wigoyu/navigation/home.dart';
 import 'package:wigoyu/navigation/profile.dart';
+import 'package:wigoyu/navigation/special_offer.dart';
 import 'package:wigoyu/navigation/voucher.dart';
-import 'package:wigoyu/page/special_offer.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({super.key, this.initialIndex});
@@ -17,19 +17,40 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 0;
+  final List<Widget?> _pages = [null, null, null, null];
 
-  final List<Widget> _pages = [
-    Home(),
-    SpecialOffer(),
-    Voucher(),
-    Profile(),
-  ];
+  // final List<Widget> _pages = [
+  //   Home(),
+  //   SpecialOffer(),
+  //   Voucher(),
+  //   Profile(),
+  // ];
 
   @override
   void initState() {
     super.initState();
+    // if (widget.initialIndex != null) {
+    //   _currentIndex = widget.initialIndex!;
+    // }
+
     if (widget.initialIndex != null) {
       _currentIndex = widget.initialIndex!;
+    }
+    _pages[_currentIndex] = _buildPage(_currentIndex);
+  }
+
+  Widget _buildPage(int index) {
+    switch (index) {
+      case 0:
+        return Home();
+      case 1:
+        return SpecialOffer();
+      case 2:
+        return Voucher();
+      case 3:
+        return Profile();
+      default:
+        return Container();
     }
   }
 
@@ -37,9 +58,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: _currentIndex, // Menjaga halaman yang sedang aktif
-        children: _pages,
-      ), // Menampilkan halaman berdasarkan indeks
+        // index: _currentIndex,
+        // children: _pages,
+        index: _currentIndex,
+        children: List.generate(_pages.length, (index) {
+          return _pages[index] ?? SizedBox();
+        }),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedLabelStyle: GoogleFonts.poppins(
             fontSize: 12,
@@ -54,8 +79,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex, // Indeks aktif
         onTap: (index) {
+          // setState(() {
+          //   _currentIndex = index;
+          // });
           setState(() {
-            _currentIndex = index; // Mengubah halaman saat item dipilih
+            _currentIndex = index;
+            if (_pages[index] == null) {
+              _pages[index] = _buildPage(index);
+            }
           });
         },
         items: [
@@ -68,18 +99,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/spesial_biru.png',
-              width: 22,
-              fit: BoxFit.contain,
-            ),
-            label: 'Spesial Offer',
-            activeIcon: Image.asset(
-              'assets/icons/spesial_hijau.png',
-              width: 22,
-              fit: BoxFit.contain,
-            ),
-          ),
+              icon: Icon(Icons.thumb_up),
+              label: 'Spesial Offer',
+              activeIcon: Icon(Icons.thumb_up)),
           BottomNavigationBarItem(
               icon: Icon(Icons.local_offer_outlined),
               label: 'Voucher',

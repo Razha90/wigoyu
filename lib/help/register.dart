@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'dart:math';
+import 'package:wigoyu/model/user_notification.dart';
+import 'package:wigoyu/model/user_voucher.dart';
 
 class UserPreferences {
   static const String _userKey = 'users';
@@ -66,10 +67,14 @@ class UserPreferences {
   }
 
   static Future<void> saveAllUsers(List<Users> users) async {
-    final prefs = await SharedPreferences.getInstance();
-    List<String> userList =
-        users.map((user) => jsonEncode(user.toMap())).toList();
-    await prefs.setStringList(_userKey, userList);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      List<String> userList =
+          users.map((user) => jsonEncode(user.toMap())).toList();
+      await prefs.setStringList(_userKey, userList);
+    } catch (e) {
+      throw Exception('Error saving users: $e');
+    }
   }
 
   static Future<void> deleteAllUsers() async {
@@ -89,8 +94,11 @@ class Users {
   String token;
   String? verified;
   String? saldo;
-  final List<String>? history;
+  List<String>? history;
   String? photo;
+  String? pin;
+  List<UserNotification>? notifications;
+  List<int>? vouchers;
 
   Users({
     required this.id,
@@ -104,22 +112,29 @@ class Users {
     this.referral,
     this.history,
     this.photo,
+    this.pin,
+    this.notifications,
+    this.vouchers,
   });
 
-  // Konversi User ke Map (untuk disimpan di SharedPreferences)
-  Map<String, String> toMap() {
+  Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'name': name!,
-      'email': email!,
-      'phone': phone!,
-      'password': password!,
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'password': password,
       'token': token,
-      'verified': verified!,
-      'saldo': saldo!,
-      'referral': referral!,
-      'history': history!.join(','),
-      'photo': photo!,
+      'verified': verified,
+      'saldo': saldo,
+      'referral': referral,
+      'history': history != null ? jsonEncode(history) : null,
+      'photo': photo,
+      'pin': pin,
+      'notifications': notifications != null
+          ? jsonEncode(notifications!.map((n) => n.toJson()).toList())
+          : null,
+      'vouchers': vouchers != null ? jsonEncode(vouchers) : null,
     };
   }
 
@@ -135,8 +150,18 @@ class Users {
       verified: map['verified'],
       saldo: map['saldo'],
       referral: map['referral'],
-      history: map['history'].split(','),
+      history: map['history'] != null
+          ? List<String>.from(jsonDecode(map['history']))
+          : null,
       photo: map['photo'],
+      pin: map['pin'],
+      notifications: map['notifications'] != null
+          ? List<UserNotification>.from(jsonDecode(map['notifications'])
+              .map((n) => UserNotification.fromJson(n)))
+          : null,
+      vouchers: map['vouchers'] != null
+          ? List<int>.from(jsonDecode(map['vouchers']))
+          : null,
     );
   }
 }

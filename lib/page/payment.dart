@@ -7,10 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wigoyu/app_color.dart';
 import 'package:wigoyu/help/user.dart';
 import 'package:wigoyu/model/item_product.dart';
+import 'package:wigoyu/model/user_voucher.dart';
+import 'package:wigoyu/navigation/bottom_navigation.dart';
 
 class Payment extends StatefulWidget {
   const Payment({super.key, required this.title});
@@ -23,7 +26,8 @@ class Payment extends StatefulWidget {
 class _PaymentState extends State<Payment> {
   late User user;
   final formatCurrency = NumberFormat("#,###", "id_ID");
-  late Future<Voucher?> _setVoucher;
+  late Future<UserVoucher?> _setVoucher;
+  bool enabled = true;
 
   @override
   void initState() {
@@ -31,8 +35,8 @@ class _PaymentState extends State<Payment> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final userProvider = Provider.of<User>(context, listen: false);
       if (!userProvider.isLoggedIn) {
-        context.pushNamedTransition(
-            routeName: '/login', type: PageTransitionType.rightToLeft);
+        context.pushReplacementTransition(
+            child: BottomNavigation(), type: PageTransitionType.rightToLeft);
         return;
       }
       setState(() {
@@ -42,7 +46,7 @@ class _PaymentState extends State<Payment> {
     _setVoucher = _getVoucher(widget.title);
   }
 
-  Future<Voucher?> _getVoucher(int voucherId) async {
+  Future<UserVoucher?> _getVoucher(int voucherId) async {
     await Future.delayed(const Duration(seconds: 1));
     final String response =
         await rootBundle.loadString('assets/data/data.json');
@@ -59,37 +63,142 @@ class _PaymentState extends State<Payment> {
     return null;
   }
 
-  void _checkSaldo() async {
-    Voucher? voucher = await _setVoucher; // Tunggu hingga Future selesai
-
-    if (voucher == null) {
-      print("Voucher tidak ditemukan.");
+  void _checkPin() {
+    if (user.pin == "") {
+      QuickAlert.show(
+          context: context,
+          type: QuickAlertType.warning,
+          onConfirmBtnTap: () {
+            Navigator.pop(context);
+            context.pushNamedTransition(
+                routeName: '/make_pin',
+                type: PageTransitionType.rightToLeft,
+                arguments: user.userId);
+          },
+          title: "Buat PIN Terlebih Dahulu",
+          text: "Anda belum membuat PIN. Silahkan buat PIN terlebih dahulu");
       return;
     }
-
-    int saldoUser = int.parse(user.saldo ?? "0");
-
-    if (saldoUser < voucher.price) {
-      if (mounted) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Saldo Tidak Cukup'),
-              content: Text('Saldo anda tidak mencukupi untuk membeli voucher'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('OK'),
-                )
-              ],
-            );
-          },
-        );
-      }
-    }
+    context.pushNamedTransition(
+      routeName: '/payment-check',
+      type: PageTransitionType.rightToLeft,
+      arguments: widget.title,
+    );
+    // final defaultPinTheme = PinTheme(
+    //   margin: EdgeInsets.all(3),
+    //   width: 56,
+    //   height: 56,
+    //   textStyle: const TextStyle(
+    //     fontSize: 22,
+    //     color: Color.fromRGBO(30, 60, 87, 1),
+    //   ),
+    //   decoration: BoxDecoration(
+    //     border:
+    //         Border.all(color: AppColors.hijauMuda.withAlpha(100), width: 2.0),
+    //     borderRadius: BorderRadius.circular(20),
+    //   ),
+    // );
+    // // setState(() {
+    // //   enabled = true;
+    // // });
+    // // _pinController.clear();
+    // // showModalBottomSheet(
+    // //     backgroundColor: AppColors.putih,
+    // //     isScrollControlled: true,
+    // //     context: context,
+    // //     builder: (context) {
+    // //       return DraggableScrollableSheet(
+    // //         expand: false,
+    // //         initialChildSize: 0.8,
+    // //         maxChildSize: 0.9,
+    // //         minChildSize: 0.3,
+    // //         builder: (_, scrollController) {
+    // //           return StatefulBuilder(builder: (context, _) {
+    // //             return GestureDetector(
+    // //               behavior: HitTestBehavior.opaque,
+    // //               onTap: () {
+    // //                 FocusScope.of(context).unfocus();
+    // //               },
+    // //               child: SizedBox(
+    // //                 width: MediaQuery.of(context).size.width,
+    // //                 child: Padding(
+    // //                   padding: const EdgeInsets.only(top: 40),
+    // //                   child: Column(
+    // //                     spacing: 20,
+    // //                     children: [
+    // //                       Text(
+    // //                         'Masukkan PIN Anda',
+    // //                         style: GoogleFonts.jaldi(fontSize: 25),
+    // //                       ),
+    // //                       Directionality(
+    // //                           textDirection: ui.TextDirection.ltr,
+    // //                           child: Pinput(
+    // //                             defaultPinTheme: defaultPinTheme,
+    // //                             enabled: enabled ? true : false,
+    // //                             controller: _pinController,
+    // //                             onCompleted: (value) async {
+    // //                               setState(() {
+    // //                                 enabled = false;
+    // //                               });
+    // //                               print("memek");
+    // //                               // if (!RegExp(r'^\d+$').hasMatch(value)) {
+    // //                               //   setState(() {
+    // //                               //     enabled = false;
+    // //                               //   });
+    // //                               //   await Future.delayed(const Duration(
+    // //                               //       seconds: 1, milliseconds: 500));
+    // //                               //   setState(() {
+    // //                               //     enabled = true;
+    // //                               //   });
+    // //                               // }
+    // //                             },
+    // //                             cursor: Column(
+    // //                               mainAxisAlignment: MainAxisAlignment.end,
+    // //                               children: [
+    // //                                 Container(
+    // //                                   margin: const EdgeInsets.only(bottom: 9),
+    // //                                   width: 22,
+    // //                                   height: 1,
+    // //                                   color: AppColors.putih,
+    // //                                 ),
+    // //                               ],
+    // //                             ),
+    // //                             focusedPinTheme: defaultPinTheme.copyWith(
+    // //                                 decoration:
+    // //                                     defaultPinTheme.decoration!.copyWith(
+    // //                               color: AppColors.hijauMuda.withAlpha(50),
+    // //                             )),
+    // //                             submittedPinTheme: defaultPinTheme.copyWith(
+    // //                               decoration:
+    // //                                   defaultPinTheme.decoration!.copyWith(
+    // //                                 color: AppColors.hijauMuda.withAlpha(50),
+    // //                                 borderRadius: BorderRadius.circular(19),
+    // //                                 border: Border(
+    // //                                   bottom: BorderSide(
+    // //                                     color: AppColors.hijauMuda,
+    // //                                     width: 2.0,
+    // //                                   ),
+    // //                                 ),
+    // //                               ),
+    // //                             ),
+    // //                             errorPinTheme: defaultPinTheme.copyBorderWith(
+    // //                               border: Border(
+    // //                                 bottom: BorderSide(
+    // //                                   color: Colors.red, // Warna garis bawah
+    // //                                   width: 2.0, // Ketebalan garis bawah
+    // //                                 ),
+    // //                               ),
+    // //                             ),
+    // //                           )),
+    // //                     ],
+    // //                   ),
+    // //                 ),
+    // //               ),
+    // //             );
+    // //           });
+    // //         },
+    // //       );
+    // //     });
   }
 
   void _refreshData() {
@@ -117,7 +226,7 @@ class _PaymentState extends State<Payment> {
           CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
-                child: FutureBuilder<Voucher?>(
+                child: FutureBuilder<UserVoucher?>(
                     future: _setVoucher,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -186,7 +295,7 @@ class _PaymentState extends State<Payment> {
                       if (snapshot.data == null) {
                         return const Center(child: Text('Data not found'));
                       }
-                      final Voucher voucher = snapshot.data!;
+                      final UserVoucher voucher = snapshot.data!;
                       return Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Column(
@@ -203,12 +312,12 @@ class _PaymentState extends State<Payment> {
                                   color: AppColors.hitam.withAlpha(150),
                                   size: 20,
                                 ),
-                                Text(voucher.name, style: GoogleFonts.jaldi()),
+                                Text(voucher.name!, style: GoogleFonts.jaldi()),
                               ],
                             ),
                             SizedBox(height: 20),
                             Text(
-                              voucher.description,
+                              voucher.description!,
                               style: GoogleFonts.jaldi(fontSize: 20),
                             ),
                             SizedBox(height: 50),
@@ -243,7 +352,7 @@ class _PaymentState extends State<Payment> {
                                           color: AppColors.putih,
                                         ),
                                         Text(
-                                          voucher.name,
+                                          voucher.name!,
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.center,
@@ -300,7 +409,7 @@ class _PaymentState extends State<Payment> {
                   child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 10),
-                      child: FutureBuilder<Voucher?>(
+                      child: FutureBuilder<UserVoucher?>(
                           future: _setVoucher,
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -389,7 +498,8 @@ class _PaymentState extends State<Payment> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 20, vertical: 10),
                                       onPressed: () {
-                                        _checkSaldo();
+                                        _checkPin();
+                                        // _checkSaldo();
                                       },
                                       icon: Row(
                                         spacing: 5,
