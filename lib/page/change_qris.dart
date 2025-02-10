@@ -11,12 +11,15 @@ import 'package:flutter_media_store/flutter_media_store.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:wigoyu/app_color.dart';
+import 'package:wigoyu/help/user.dart';
 import 'dart:ui' as ui;
 
 import 'package:wigoyu/model/item_product.dart';
 import 'package:wigoyu/model/user_voucher.dart';
+import 'package:wigoyu/model/voucher_used.dart';
 
 class ChangeQris extends StatefulWidget {
   const ChangeQris({super.key, this.title});
@@ -29,6 +32,7 @@ class ChangeQris extends StatefulWidget {
 
 class _ChangeQrisState extends State<ChangeQris> {
   late Future<ItemProduct?> _product;
+  late User user;
   @override
   void initState() {
     super.initState();
@@ -51,6 +55,7 @@ class _ChangeQrisState extends State<ChangeQris> {
       }
     });
     _product = _getParentProduct(widget.title!);
+    user = Provider.of<User>(context, listen: false);
   }
 
   Future<ItemProduct?> _getParentProduct(int voucherId) async {
@@ -258,12 +263,15 @@ class _ChangeQrisState extends State<ChangeQris> {
                             final UserVoucher voucher = snapshot.data!.voucher
                                 .firstWhere(
                                     (element) => element.id == widget.title);
+                            VoucherUsed voucherUsed =
+                                VoucherUsed.fromUserVoucher(
+                                    voucher, user.name!);
                             return PrettyQrView.data(
                               errorBuilder: (context, error, stackTrace) {
                                 return const Text('Something went wrong!');
                               },
                               errorCorrectLevel: QrErrorCorrectLevel.H,
-                              data: jsonEncode(voucher),
+                              data: jsonEncode(voucherUsed),
                               decoration: const PrettyQrDecoration(
                                 background: AppColors.putih,
                                 image: PrettyQrDecorationImage(

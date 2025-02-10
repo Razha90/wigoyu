@@ -12,6 +12,8 @@ import 'package:wigoyu/help/random_string.dart';
 import 'package:wigoyu/help/user.dart';
 import 'package:wigoyu/model/user_notification.dart';
 import 'package:wigoyu/model/user_voucher.dart';
+import 'package:wigoyu/model/voucher_used.dart';
+import 'package:wigoyu/navigation/voucher.dart';
 
 class ScannerScreen extends StatefulWidget {
   const ScannerScreen({super.key});
@@ -42,7 +44,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   Future<void> _checkRawString(String text) async {
     try {
       Map<String, dynamic> jsonData = jsonDecode(text);
-      UserVoucher voucher = UserVoucher.fromJson(jsonData);
+      VoucherUsed voucher = VoucherUsed.fromJson(jsonData);
       if (user.voucher!.contains(voucher.id)) {
         await user.updateHistoryVoucher(user.userId!, voucher.id!);
         await user.deleteVoucher(user.userId!, voucher.id!);
@@ -72,8 +74,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
             },
             confirmBtnText: "Scan Lagi",
             cancelBtnText: "Kembali",
-            title: 'Hasil Scan',
-            text: "Voucher Berhasil Di Scan\n${voucher.name}",
+            title: 'Yeay! Diskon ${voucher.discount}% untuk Anda!',
+            text:
+                "Selamat, ${voucher.userName}! Anda berhasil menggunakan voucher '${voucher.name}'. Nikmati potongan ${voucher.discount}%.",
           );
         }
       } else {
@@ -119,6 +122,68 @@ class _ScannerScreenState extends State<ScannerScreen> {
           cancelBtnText: "Kembali",
           title: 'Maaaf',
           text: "Gagal membaca barcode",
+        );
+      }
+    }
+  }
+
+  Future<void> _checkScanningImage(String text) async {
+    try {
+      Map<String, dynamic> jsonData = jsonDecode(text);
+      VoucherUsed voucher = VoucherUsed.fromJson(jsonData);
+      await user.updateNotification(
+          user.userId!,
+          UserNotification(
+            name: "Berhasil! Voucher ${voucher.name} Dipindai",
+            text:
+                "Voucher '${voucher.name}' milik ${voucher.userName} telah berhasil dipindai dan digunakan.",
+            id: generateRandomNumberString(6),
+            open: false,
+          ));
+      if (mounted) {
+        QuickAlert.show(
+          disableBackBtn: true,
+          context: context,
+          showCancelBtn: true,
+          type: QuickAlertType.success,
+          onConfirmBtnTap: () {
+            _controllerScan.start();
+            Navigator.pop(context);
+            return;
+          },
+          onCancelBtnTap: () {
+            _controllerScan.dispose();
+            Navigator.pop(context);
+            Navigator.pop(context);
+            return;
+          },
+          confirmBtnText: "Scan Lagi",
+          cancelBtnText: "Kembali",
+          title: 'Voucher Diskon ${voucher.discount}%.',
+          text:
+              "'${voucher.name}' milik ${voucher.userName} telah berhasil digunakan untuk transaksi.",
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        QuickAlert.show(
+          disableBackBtn: true,
+          context: context,
+          showCancelBtn: true,
+          type: QuickAlertType.error,
+          onConfirmBtnTap: () {
+            _controllerScan.start();
+            Navigator.pop(context);
+          },
+          onCancelBtnTap: () {
+            _controllerScan.dispose();
+            Navigator.pop(context);
+            Navigator.pop(context);
+          },
+          confirmBtnText: "Coba Lagi",
+          cancelBtnText: "Kembali",
+          title: 'Maaaf',
+          text: "Voucher tidak ditemukan atau sudah digunakan",
         );
       }
     }
@@ -228,7 +293,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
                 setState(() {
                   _isScanning = false;
                 });
-                _checkRawString(rawValue);
+                // _checkRawString(rawValue);
+                _checkScanningImage(rawValue);
               }
             }
           },
@@ -339,34 +405,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
                         },
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(bottom: 10),
-                    //   child: ElevatedButton(
-                    //       style: ElevatedButton.styleFrom(
-                    //           shape: CircleBorder(),
-                    //           padding: EdgeInsets.all(10),
-                    //           backgroundColor: AppColors.biruMuda,
-                    //           foregroundColor: AppColors.hijauMuda,
-                    //           overlayColor: AppColors.hijauMuda,
-                    //           surfaceTintColor: AppColors.hijauMuda,
-                    //           disabledBackgroundColor: AppColors.hijauMuda),
-                    //       onPressed: () async {
-                    //         _controllerScan.pause();
-                    //         setState(() {
-                    //           _isScanning = true;
-                    //         });
-                    //         await Future.delayed(Duration(seconds: 2));
-                    //         _controllerScan.start();
-                    //         setState(() {
-                    //           _isScanning = false;
-                    //         });
-                    //       },
-                    //       child: Icon(
-                    //         Icons.qr_code_scanner,
-                    //         size: 55,
-                    //         color: AppColors.putih,
-                    //       )),
-                    // ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: CircleBorder(),
